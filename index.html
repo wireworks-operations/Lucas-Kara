@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Kara — Systems Administrator & Infrastructure Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Google Official Colors */
+            --google-blue: #1f2937;
+            --google-red: #dc2626;
+            --google-yellow: #f59e0b;
+            --google-green: #10b981;
+            --google-blue-primary: #3b82f6;
+            
+            /* Google Exact Palette */
+            --color-blue: #1a73e8;
+            --color-red: #d33b27;
+            --color-yellow: #f9ab00;
+            --color-green: #0d9488;
+            
+            /* Light Mode Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f9f9;
+            --bg-tertiary: #f1f3f4;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --text-tertiary: #70757a;
+            --border-color: #e8e8e8;
+            --border-light: #dadce0;
+            
+            /* Shadow Hierarchy */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.05);
+            --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15), 0 15px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #242424;
+            --bg-tertiary: #2f2f2f;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b8b8b8;
+            --text-tertiary: #a0a0a0;
+            --border-color: #363636;
+            --border-light: #424242;
+            --color-blue: #5a9bea;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.35), 0 10px 10px rgba(0, 0, 0, 0.2);
+            --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.35), 0 15px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        html {
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Subtle noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 255, 255, 0.02) 0px,
+                    rgba(255, 255, 255, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .topbar-logo {
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            position: absolute;
+            left: 20px;
+            display: flex;
+            gap: 1px;
+        }
+
+        .topbar-logo span {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .topbar-logo span:hover {
+            transform: translateY(-8px);
+        }
+
+        .topbar-logo span.space {
+            width: 4px;
+        }
+
+        .topbar-logo span:nth-child(1) { color: #4285F4; }
+        .topbar-logo span:nth-child(2) { color: #EA4335; }
+        .topbar-logo span:nth-child(3) { color: #FBBC04; }
+        .topbar-logo span:nth-child(4) { color: #4285F4; }
+        .topbar-logo span:nth-child(5) { color: #34A853; }
+        .topbar-logo span:nth-child(6) { color: #EA4335; }
+        .topbar-logo span:nth-child(7) { color: #4285F4; }
+        .topbar-logo span:nth-child(8) { color: #EA4335; }
+        .topbar-logo span:nth-child(9) { color: #FBBC04; }
+        .topbar-logo span:nth-child(10) { color: #4285F4; }
+
+        .topbar-search {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            width: 500px;
+            max-width: 500px;
+            transition: all 0.3s ease;
+        }
+
+        .topbar-search:focus-within {
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1), var(--shadow-md);
+            background: var(--bg-primary);
+        }
+
+        .topbar-search input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .topbar-search input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .topbar-search i {
+            color: #9aa0a6;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .topbar-search i:hover {
+            color: var(--color-blue);
+        }
+
+        .theme-toggle {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: absolute;
+            right: 20px;
+        }
+
+        .topbar-icon {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 20px;
+            transition: color 0.3s ease;
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #1a73e8;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: calc(100vh - 80px);
+            width: 100%;
+        }
+
+        /* LEFT COLUMN */
+        .left-column {
+            flex: 1;
+            padding: 24px 20px 24px 20px;
+            max-width: 700px;
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: 100%;
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .tab {
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: pointer;
+            padding-bottom: 12px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab:hover {
+            color: var(--color-blue);
+        }
+
+        .tab.active {
+            color: var(--color-blue);
+            border-bottom-color: var(--color-blue);
+        }
+
+        .tab i {
+            font-size: 16px;
+        }
+
+        /* RESULTS INFO */
+        .results-info {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+        }
+
+        /* FEATURED RESULT */
+        .featured-result {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+            background: var(--bg-secondary);
+            animation: fadeInUp 0.5s ease-out;
+            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .featured-result:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .featured-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #f9ab00;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .featured-label i {
+            font-size: 14px;
+        }
+
+        .featured-breadcrumb {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .featured-breadcrumb i {
+            font-size: 14px;
+        }
+
+        .result-title {
+            color: var(--color-blue);
+            font-size: 18px;
+            text-decoration: none;
+            margin: 8px 0;
+            display: inline-block;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1.3;
+        }
+
+        .result-title:hover {
+            text-decoration: underline;
+        }
+
+        .featured-meta {
+            font-size: 13px;
+            color: #545454;
+            margin: 8px 0;
+        }
+
+        .featured-description {
+            font-size: 14px;
+            color: #545454;
+            line-height: 1.6;
+            margin: 12px 0;
+        }
+
+        .featured-link {
+            color: var(--color-blue);
+            font-size: 13px;
+            text-decoration: none;
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        .featured-link:hover {
+            text-decoration: underline;
+        }
+
+        /* REGULAR RESULTS */
+        .result {
+            margin-bottom: 28px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stagger animations for multiple results */
+        .result:nth-child(1) { animation-delay: 0.05s; }
+        .result:nth-child(2) { animation-delay: 0.1s; }
+        .result:nth-child(3) { animation-delay: 0.15s; }
+        .result:nth-child(4) { animation-delay: 0.2s; }
+        .result:nth-child(5) { animation-delay: 0.25s; }
+        .result:nth-child(6) { animation-delay: 0.3s; }
+        .result:nth-child(7) { animation-delay: 0.35s; }
+        .result:nth-child(8) { animation-delay: 0.4s; }
+
+        .result-breadcrumb {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .result-breadcrumb i {
+            font-size: 14px;
+        }
+
+        .result[style*="display: none"] {
+            animation: fadeOutDown 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeOutDown {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+        }
+
+        .result-snippet {
+            font-size: 14px;
+            color: #545454;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+
+        .result-tags {
+            margin-top: 8px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: inline-block;
+            background: transparent;
+            color: var(--text-tertiary);
+            padding: 0;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .tag:before {
+            content: "#";
+            color: var(--text-tertiary);
+        }
+
+        /* RIGHT COLUMN - PROFILE CARD */
+        .right-column {
+            width: 340px;
+            padding: 24px 20px;
+            margin-left: 24px;
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: 100%;
+        }
+
+        .profile-card {
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .profile-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-header {
+            margin-bottom: 16px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .profile-title {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 16px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+        }
+
+        .profile-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .profile-button {
+            padding: 8px 12px;
+            border: 1px solid var(--border-light);
+            background: white;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--color-blue);
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-button:hover {
+            background: var(--bg-tertiary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .profile-button i {
+            font-size: 14px;
+        }
+
+        .profile-divider {
+            height: 1px;
+            background: #dadce0;
+            margin: 16px 0;
+        }
+
+        .profile-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .profile-skills {
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #e8e8e8;
+            color: var(--text-secondary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin: 4px 4px 4px 0;
+        }
+
+        .profile-info {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        .profile-info-label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .profile-info a {
+            color: var(--color-blue);
+            text-decoration: none;
+        }
+
+        .profile-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                max-width: 400px;
+            }
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            padding: 24px;
+            box-shadow: var(--shadow-2xl);
+            animation: slideIn 0.3s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .modal-icon {
+            width: 40px;
+            height: 40px;
+            background: #1a73e8;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .modal-title-section {
+            flex: 1;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .modal-company {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-tertiary);
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .modal-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .modal-meta-item i {
+            font-size: 14px;
+        }
+
+        .modal-section {
+            margin-bottom: 24px;
+        }
+
+        .modal-section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .modal-section-content {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .modal-bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .modal-bullet-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .modal-bullet-list li:before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            color: var(--color-blue);
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .modal-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #e8e8e8;
+            margin-top: 20px;
+        }
+
+        .modal-updated {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .modal-button {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-light);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--color-blue);
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .modal-button:hover {
+            background: #e8e8e8;
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        /* PROFILE MODAL */
+        .profile-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .profile-modal-overlay.active {
+            display: flex;
+        }
+
+        .profile-modal {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 32px;
+            box-shadow: var(--shadow-2xl);
+            animation: slideIn 0.3s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-modal-header {
+            margin-bottom: 24px;
+        }
+
+        .profile-modal-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4285F4 0%, #1a73e8 100%);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+        }
+
+        .profile-modal-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .profile-modal-title {
+            font-size: 14px;
+            color: var(--text-tertiary);
+            margin-bottom: 16px;
+        }
+
+        .profile-modal-divider {
+            height: 1px;
+            background: #e8e8e8;
+            margin: 20px 0;
+        }
+
+        .profile-modal-section {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        .profile-modal-section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .profile-modal-summary {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .profile-modal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .profile-modal-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--color-blue);
+            font-size: 13px;
+            transition: all 0.2s;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-modal-link:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--color-blue);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .profile-modal-link i {
+            font-size: 16px;
+            color: var(--color-blue);
+        }
+
+        .profile-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-tertiary);
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .profile-modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .profile-modal {
+            position: relative;
+        }
+
+        /* CURSOR CHANGES */
+        body {
+            cursor: default;
+        }
+
+        a, button, .result-title, .tab, .profile-avatar, .topbar-icon, .modal-close, .profile-modal-close {
+            cursor: pointer;
+        }
+
+        .topbar-search input {
+            cursor: text;
+        }
+
+        /* TOOLTIPS */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            background-color: var(--text-primary);
+            color: var(--bg-primary);
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--text-primary) transparent transparent transparent;
+        }
+
+        .tooltip-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Icon tooltips on topbar */
+        .topbar-icon-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 680px) {
+            .topbar {
+                flex-wrap: wrap;
+            }
+
+            .topbar-search {
+                max-width: 100%;
+                order: 3;
+                flex-basis: 100%;
+                margin-top: 12px;
+            }
+
+            .tabs {
+                font-size: 12px;
+                gap: 12px;
+            }
+
+            .tab {
+                gap: 4px;
+            }
+
+            .tab i {
+                display: none;
+            }
+
+            .modal {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="topbar-logo">
+            <span>L</span><span>u</span><span>c</span><span>a</span><span>s</span><span class="space"></span><span>K</span><span>a</span><span>r</span><span>a</span>
+        </div>
+        <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Systems Administrator | Infrastructure Engineer" value="Systems Administrator | Infrastructure Engineer">
+            <div class="tooltip-container">
+                <i class="fas fa-moon theme-toggle" onclick="toggleDarkMode()" id="theme-icon"></i>
+                <span class="tooltip" id="theme-tooltip">Dark Mode</span>
+            </div>
+            <i class="fas fa-sliders-h"></i>
+        </div>
+        <div class="topbar-right">
+            <div class="tooltip-container">
+                <i class="fas fa-microphone topbar-icon"></i>
+                <span class="tooltip">Voice Search</span>
+            </div>
+            <div class="tooltip-container">
+                <i class="fas fa-search topbar-icon"></i>
+                <span class="tooltip">Search</span>
+            </div>
+            <div class="tooltip-container">
+                <i class="fas fa-th topbar-icon"></i>
+                <span class="tooltip">Apps</span>
+            </div>
+            <div class="tooltip-container" style="margin-left: 8px;">
+                <div class="profile-avatar" onclick="openProfileModal()">L</div>
+                <span class="tooltip">Profile</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- LEFT COLUMN -->
+        <div class="left-column">
+            <!-- TABS -->
+            <div class="tabs">
+                <a class="tab active tooltip-container" onclick="filterCategory('all'); return false;">
+                    <i class="fas fa-search"></i> All
+                    <span class="tooltip">All Results</span>
+                </a>
+                <a class="tab tooltip-container" onclick="filterCategory('experience'); return false;">
+                    <i class="fas fa-briefcase"></i> Experience
+                    <span class="tooltip">Work Experience</span>
+                </a>
+                <a class="tab tooltip-container" onclick="filterCategory('education'); return false;">
+                    <i class="fas fa-graduation-cap"></i> Education
+                    <span class="tooltip">Education</span>
+                </a>
+                <a class="tab tooltip-container" onclick="filterCategory('skills'); return false;">
+                    <i class="fas fa-star"></i> Skills
+                    <span class="tooltip">Technical Skills</span>
+                </a>
+                <a class="tab tooltip-container" onclick="filterCategory('projects'); return false;">
+                    <i class="fas fa-folder"></i> Projects
+                    <span class="tooltip">Projects</span>
+                </a>
+                <a class="tab tooltip-container" onclick="filterCategory('more'); return false;">
+                    <i class="fas fa-ellipsis-h"></i> More
+                    <span class="tooltip">More Options</span>
+                </a>
+            </div>
+
+            <!-- RESULTS INFO -->
+            <div class="results-info">About <span id="result-count">12</span> results (0.33 seconds)</div>
+
+            <!-- FEATURED SPOTLIGHT -->
+            <div class="featured-result" data-category="projects">
+                <div class="featured-label">
+                    <i class="fas fa-star"></i> FEATURED SPOTLIGHT
+                </div>
+                <div class="featured-breadcrumb">
+                    <i class="fas fa-folder-open"></i>
+                    Self-Directed Projects · Experience
+                </div>
+                <a class="result-title" onclick="openModal('wire-tools'); return false;" style="cursor: pointer;">Wire Tools Suite — Production Web Application</a>
+                <div class="featured-meta">2025 - Present — Web Development, Full-Stack</div>
+                <div class="featured-description">
+                    Identified critical inefficiency in wire cutting and inventory tracking workflows. Built a production web application (HTML, CSS, JavaScript, Cloudflare Pages) that standardized cutting protocols, enabled data-driven inventory management, and reduced material waste. Includes cut logging, calculation tools, and documented best practices. Zero implementation cost.
+                </div>
+                <a class="featured-link" href="#" onclick="openModal('wire-tools'); return false;">Explore more in Projects →</a>
+            </div>
+
+            <!-- RESULT 1 -->
+            <div class="result" data-category="experience">
+                <div class="result-breadcrumb">
+                    <i class="fas fa-briefcase"></i>
+                    EECOL Electric - Port Kells · Experience
+                </div>
+                <a class="result-title" onclick="openModal('wire-cutter'); return false;" style="cursor: pointer;">Wire Cutter & Material Handler</a>
+                <div class="featured-meta">April 2025 - Present</div>
+                <div class="result-snippet">
+                    Managing wire cutting operations and material handling in fast-paced industrial environment. Identified critical workflow inefficiencies and developed custom software solution to address data visibility gap. Demonstrates precise execution, attention to detail, and safety consciousness.
+                </div>
+                <div class="result-tags">
+                    <span class="tag">Operations</span>
+                    <span class="tag">Warehouse</span>
+                </div>
+            </div>
+
+            <!-- RESULT 2 -->
+            <div class="result" data-category="experience">
+                <div class="result-breadcrumb">
+                    <i class="fas fa-briefcase"></i>
+                    Multiple Employers · Experience
+                </div>
+                <a class="result-title" onclick="openModal('warehouse'); return false;" style="cursor: pointer;">Warehouse Operations & Material Handling</a>
+                <div class="featured-meta">2010 - 2025 — 10+ years</div>
+                <div class="result-snippet">
+                    Hands-on warehouse and logistics experience with consistent reliability and safety consciousness. Certified operator of precision equipment (forklift, reach truck, order picker). Developed deep understanding of industrial processes and operational efficiency requirements.
+                </div>
+                <div class="result-tags">
+                    <span class="tag">Logistics</span>
+                    <span class="tag">Equipment</span>
+                    <span class="tag">Operations</span>
+                </div>
+            </div>
+
+            <!-- RESULT 3 -->
+            <div class="result" data-category="projects">
+                <div class="result-breadcrumb">
+                    <i class="fas fa-folder-open"></i>
+                    Hobby · Self-Directed Projects
+                </div>
+                <a class="result-title" onclick="openModal('homelab'); return false;" style="cursor: pointer;">Homelab Infrastructure & Systems Administration</a>
+                <div class="featured-meta">Ongoing — Infrastructure, Linux, Security</div>
+                <div class="result-snippet">
+                    Designed and implemented multi-platform production infrastructure emphasizing zero-trust architecture. Built ecosystem replacing SaaS dependencies: media automation, storage solutions, DNS infrastructure, monitoring, and AI/ML services. Network security: zero-trust design via Cloudflare Tunnels, Tailscale, Twingate. No open inbound ports except HTTP/HTTPS.
+                </div>
+                <div class="result-tags">
+                    <span class="tag">Infrastructure</span>
+                    <span class="tag">Linux</span>
+                    <span class="tag">Security</span>
+                    <span class="tag">Automation</span>
+                </div>
+            </div>
+
+            <!-- RESULT 4 -->
+            <div class="result" data-category="skills">
+                <div class="result-breadcrumb">
+                    <i class="fas fa-star"></i>
+                     · Technical Skills
+                </div>
+                <a class="result-title" onclick="openModal('technical-skills'); return false;" style="cursor: pointer;">Technical Expertise & Knowledge</a>
+                <div class="featured-meta">Systems, Networking, Development</div>
+                <div class="result-snippet">
+                    Systems administration • Network architecture • Security-conscious design • Infrastructure automation • Linux systems • Docker containerization • Proxmox virtualization • Full-stack web development (HTML/CSS/JavaScript) • n8n workflow automation • Cloudflare deployment
+                </div>
+                <div class="result-tags">
+                    <span class="tag">Systems</span>
+                    <span class="tag">Networking</span>
+                    <span class="tag">Development</span>
+                </div>
+            </div>
+
+            <!-- RESULT 5 -->
+            <div class="result" data-category="skills">
+                <div class="result-breadcrumb">
+                    <i class="fas fa-star"></i>
+                     · Networking & Security
+                </div>
+                <a class="result-title" onclick="openModal('networking'); return false;" style="cursor: pointer;">Networking & Security Architecture</a>
+                <div class="featured-meta">Zero-Trust, DNS, VPN, Reverse Proxy</div>
+                <div class="result-snippet">
+                    DNS, reverse proxy (Zoraxy), zero-trust design. Cloudflare Tunnels, Tailscale, Twingate for access. User authentication and segmentation as first-class concerns. No open inbound ports except 80/443. Visibility isn't optional, access isn't implicit, understanding is non-negotiable.
+                </div>
+                <div class="result-tags">
+                    <span class="tag">Security</span>
+                    <span class="tag">Networking</span>
+                </div>
+            </div>
+
+            <!-- RESULT 6 -->
+            <div class="result" data-category="projects">
+                <div class="result-breadcrumb">
+                    <i class="fas fa-folder-open"></i>
+                    Hobby · Web Development
+                </div>
+                <a class="result-title" onclick="openModal('web-dev'); return false;" style="cursor: pointer;">Full-Stack Web Development</a>
+                <div class="featured-meta">HTML, CSS, JavaScript, Responsive Design</div>
+                <div class="result-snippet">
+                    Full-stack experience with HTML, CSS, and JavaScript. Capability to identify user needs and translate them into functional web solutions. Wire Tools Suite demonstrates ability to take domain knowledge and implement it as production software. Experience with responsive design and deployment optimization.
+                </div>
+                <div class="result-tags">
+                    <span class="tag">Web Development</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Full-Stack</span>
+                </div>
+            </div>
+
+            <!-- RESULT 7 -->
+            <div class="result" data-category="education">
+                <div class="result-breadcrumb">
+                    <i class="fas fa-graduation-cap"></i>
+                    C.A.B.E. Secondary · Education
+                </div>
+                <a class="result-title" onclick="openModal('education'); return false;" style="cursor: pointer;">Grade 12 Education & Self-Directed Learning</a>
+                <div class="featured-meta">2010 - Ongoing</div>
+                <div class="result-snippet">
+                    Formal secondary education completed 2010. Continuous self-directed technical education through hands-on experimentation and collaborative learning. Focus on systems administration, infrastructure, networking, and security. Passionate about continuous learning and emerging technologies.
+                </div>
+                <div class="result-tags">
+                    <span class="tag">Education</span>
+                    <span class="tag">Learning</span>
+                </div>
+            </div>
+
+            <!-- RESULT 8 -->
+            <div class="result" data-category="skills">
+                <div class="result-breadcrumb">
+                    <i class="fas fa-star"></i>
+                     · Certifications
+                </div>
+                <a class="result-title" onclick="openModal('certifications'); return false;" style="cursor: pointer;">Professional Certifications & Training</a>
+                <div class="featured-meta">Equipment Operation, Workplace Safety</div>
+                <div class="result-snippet">
+                    Forklift Operator Certification • Reach Truck Operator Certification • Order Picker Operator Certification • Workplace Safety Training. All certifications maintain current compliance and reflect commitment to operational excellence and safety.
+                </div>
+                <div class="result-tags">
+                    <span class="tag">Certified</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN - PROFILE CARD -->
+        <div class="right-column">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-name">LUCAS<br>KARA</div>
+                    <div class="profile-title">Professional Profile</div>
+                </div>
+
+                <div class="profile-image">
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <div class="profile-buttons">
+                    <a class="profile-button" href="tel:+16046008044">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                    <a class="profile-button" href="https://github.com/acidgreenservers" target="_blank">
+                        <i class="fas fa-link"></i> GitHub
+                    </a>
+                    <a class="profile-button" href="https://acidgreenservers.github.io/Noosphere-Research/" target="_blank">
+                        <i class="fas fa-share"></i> Personal Website
+                    </a>
+                </div>
+
+                <div class="profile-divider"></div>
+
+                <div class="profile-description">
+                    Systems Administrator and Infrastructure Engineer with 10+ years of hands-on operational experience. Self-taught technical professional combining deep practical knowledge of industrial operations with advanced infrastructure management, security architecture, and web development.
+                </div>
+
+                <div class="profile-info">
+                    <span class="profile-info-label">Reference</span>
+                </div>
+
+                <div class="profile-skills">
+                    <span class="skill-tag">Systems Administration</span>
+                    <span class="skill-tag">Infrastructure</span>
+                    <span class="skill-tag">Security</span>
+                    <span class="skill-tag">Networking</span>
+                    <span class="skill-tag">Web Development</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Automation</span>
+                </div>
+
+                <div class="profile-divider"></div>
+
+                <div class="profile-info">
+                    <strong class="profile-info-label">Location:</strong>
+                    <a href="#">Port Coquitlam, BC</a>
+                </div>
+
+                <div class="profile-info">
+                    <strong class="profile-info-label">Contact:</strong>
+                    <a href="tel:+16045025670">+1 604 502-5670</a>
+                </div>
+
+                <div class="profile-info">
+                    <strong class="profile-info-label">HuggingFace:</strong>
+                    <a href="https://huggingface.co/acidgreenservers" target="_blank">View Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE MODAL -->
+    <div id="profile-modal-overlay" class="profile-modal-overlay">
+        <div class="profile-modal">
+            <button class="profile-modal-close" onclick="closeProfileModal()">✕</button>
+            
+            <div class="profile-modal-header">
+                <div class="profile-modal-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-modal-name">LUCAS KARA</div>
+                <div class="profile-modal-title">Systems Administrator & Infrastructure Engineer</div>
+            </div>
+
+            <div class="profile-modal-divider"></div>
+
+            <div class="profile-modal-section">
+                <div class="profile-modal-section-title">Professional Summary</div>
+                <div class="profile-modal-summary">
+                    Self-taught technical professional with 10+ years of hands-on operational experience. Combines deep practical knowledge of industrial operations with advanced self-hosted infrastructure management, security architecture, and web development. Proven track record of identifying operational inefficiencies and implementing scalable technical solutions.
+                </div>
+            </div>
+
+            <div class="profile-modal-divider"></div>
+
+            <div class="profile-modal-section">
+                <div class="profile-modal-section-title">Location</div>
+                <div class="profile-modal-summary">Port Coquitlam, BC V3C 3H1</div>
+            </div>
+
+            <div class="profile-modal-section">
+                <div class="profile-modal-section-title">Connect</div>
+                <div class="profile-modal-links">
+                    <a href="tel:+16045025670" class="profile-modal-link">
+                        <i class="fas fa-phone"></i>
+                        <span>+1 604 502 5670</span>
+                    </a>
+                    <a href="https://github.com/acidgreenservers" target="_blank" class="profile-modal-link">
+                        <i class="fab fa-github"></i>
+                        <span>github.com/acidgreenservers</span>
+                    </a>
+                    <a href="https://acidgreenservers.github.io/Noosphere-Research/" target="_blank" class="profile-modal-link">
+                        <i class="fas fa-globe"></i>
+                        <span>acidgreenservers.github.io</span>
+                    </a>
+                    <a href="https://huggingface.co/acidgreenservers" target="_blank" class="profile-modal-link">
+                        <i class="fas fa-brain"></i>
+                        <span>huggingface.co/acidgreenservers</span>
+                    </a>
+                    <button onclick="toggleDarkMode()" class="profile-modal-link" style="border: none; cursor: pointer;">
+                        <i class="fas fa-moon"></i>
+                        <span id="dark-mode-text">Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <div class="modal-title-section">
+                    <div class="modal-title" id="modal-title">Title</div>
+                    <div class="modal-company" id="modal-company">Company</div>
+                </div>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+
+            <div class="modal-meta" id="modal-meta"></div>
+
+            <div class="modal-section" id="modal-context-section" style="display: none;">
+                <div class="modal-section-title">Context</div>
+                <div class="modal-section-content" id="modal-context"></div>
+            </div>
+
+            <div class="modal-section" id="modal-accomplishments-section" style="display: none;">
+                <div class="modal-section-title">Core Accomplishments</div>
+                <ul class="modal-bullet-list" id="modal-accomplishments"></ul>
+            </div>
+
+            <div class="modal-section" id="modal-skills-section" style="display: none;">
+                <div class="modal-section-title">Skill Stack</div>
+                <div class="modal-tags" id="modal-skills"></div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="modal-updated" id="modal-updated">Last updated: Dec 2025</div>
+                <button class="modal-button" onclick="closeModal()">Got it</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modalData = {
+            'wire-tools': {
+                title: 'Wire Tools Suite — Production Web Application',
+                company: 'EECOL Electric - Port Kells',
+                dateStart: '2025',
+                dateEnd: 'Present',
+                location: 'Port Kells, BC',
+                context: 'Identified critical inefficiency in wire cutting and inventory tracking workflows. Built a production web application that standardized cutting protocols, enabled data-driven inventory management, and reduced material waste. Deployed to production with zero implementation cost.',
+                accomplishments: [
+                    'Built responsive web application using HTML, CSS, JavaScript, and Cloudflare Pages',
+                    'Implemented cut logging system for inventory decision-making',
+                    'Developed calculation tools encoding domain knowledge (length, capacity, weight)',
+                    'Standardized cutting protocols reducing material waste',
+                    'Deployed zero-cost infrastructure using Cloudflare',
+                    'System continues to evolve based on operational feedback'
+                ],
+                skills: ['HTML', 'CSS', 'JavaScript', 'Cloudflare Pages', 'Web Development', 'Full-Stack']
+            },
+            'wire-cutter': {
+                title: 'Wire Cutter & Material Handler',
+                company: 'EECOL Electric - Port Kells',
+                dateStart: 'April 2025',
+                dateEnd: 'Present',
+                location: 'Port Kells, BC',
+                context: 'Managing wire cutting operations and material handling in fast-paced industrial environment. Responsible for processing electrical wire and cable while maintaining systems-level visibility across workflow and material handling operations.',
+                accomplishments: [
+                    'Operates precision equipment with consistent accuracy',
+                    'Identifies critical workflow inefficiencies',
+                    'Developed custom software solution to address data visibility gap',
+                    'Demonstrates precise execution and safety consciousness',
+                    'Translates operational knowledge into technical solutions',
+                    'Maintains high standards of quality and attention to detail'
+                ],
+                skills: ['Operations', 'Warehouse', 'Equipment Operation', 'Problem Solving', 'Data Analysis']
+            },
+            'warehouse': {
+                title: 'Warehouse Operations & Material Handling',
+                company: 'Multiple Employers',
+                dateStart: '2010',
+                dateEnd: '2025',
+                location: 'Various Locations',
+                context: 'Hands-on warehouse and logistics experience spanning 15+ years with consistent reliability and safety consciousness. Certified operator of precision equipment and developed deep understanding of industrial processes and operational efficiency.',
+                accomplishments: [
+                    'Certified forklift, reach truck, and order picker operator',
+                    'Consistently demonstrated reliability in high-volume environments',
+                    'Maintained safety-first mindset with zero incidents',
+                    'Developed systems-level thinking through process optimization',
+                    'Gained deep understanding of industrial processes',
+                    'Applied higher-level thinking to material handling within operational constraints'
+                ],
+                skills: ['Logistics', 'Equipment', 'Operations', 'Forklift', 'Reach Truck', 'Order Picker']
+            },
+            'homelab': {
+                title: 'Homelab Infrastructure & Systems Administration',
+                company: 'Self-Directed Projects',
+                dateStart: 'Ongoing',
+                dateEnd: 'Present',
+                location: 'Remote',
+                context: 'Designed and implemented multi-platform production infrastructure emphasizing zero-trust architecture and operational sovereignty. Built comprehensive ecosystem replacing commercial SaaS dependencies with self-hosted solutions.',
+                accomplishments: [
+                    'Implemented 5+ platform infrastructure (Proxmox, Unraid, Docker, CasaOS, DietPi)',
+                    'Created zero-trust architecture with zero inbound exposure except HTTP/HTTPS',
+                    'Built media automation stack (Radarr, Sonarr, Lidarr, Prowlarr)',
+                    'Deployed DNS infrastructure (Pi-Hole, Adguard, Technitium)',
+                    'Implemented reverse proxy (Zoraxy) and VPN solutions (Cloudflare Tunnels, Tailscale, Twingate)',
+                    'Maintained 99%+ uptime for all services with comprehensive monitoring'
+                ],
+                skills: ['Infrastructure', 'Linux', 'Security', 'Automation', 'Docker', 'Networking', 'Proxmox']
+            },
+            'technical-skills': {
+                title: 'Technical Expertise & Knowledge',
+                company: 'Professional Skills',
+                dateStart: '',
+                dateEnd: '',
+                location: '',
+                context: 'Comprehensive technical expertise spanning systems administration, infrastructure architecture, network design, and full-stack development. Self-taught professional with demonstrated ability to master complex technical concepts.',
+                accomplishments: [
+                    'Systems administration and infrastructure automation',
+                    'Network architecture and security-conscious design',
+                    'Linux systems administration and management',
+                    'Docker containerization and Proxmox virtualization',
+                    'Full-stack web development (HTML, CSS, JavaScript)',
+                    'n8n workflow automation and Cloudflare deployment'
+                ],
+                skills: ['Systems', 'Networking', 'Development', 'Linux', 'Docker', 'Proxmox', 'JavaScript']
+            },
+            'networking': {
+                title: 'Networking & Security Architecture',
+                company: 'Professional Skills',
+                dateStart: '',
+                dateEnd: '',
+                location: '',
+                context: 'Specialized expertise in modern security architecture with emphasis on zero-trust principles. Designed and implemented systems where visibility, access control, and understanding are non-negotiable first-class concerns.',
+                accomplishments: [
+                    'Implemented zero-trust network architecture',
+                    'Configured DNS and reverse proxy (Zoraxy)',
+                    'Deployed Cloudflare Tunnels for secure access',
+                    'Implemented VPN solutions (Tailscale, Twingate)',
+                    'Designed user authentication and segmentation',
+                    'Eliminated inbound port exposure while maintaining functionality'
+                ],
+                skills: ['Security', 'Networking', 'Zero-Trust', 'DNS', 'VPN', 'Reverse Proxy', 'Cloudflare']
+            },
+            'web-dev': {
+                title: 'Full-Stack Web Development',
+                company: 'Self-Directed Projects',
+                dateStart: 'Ongoing',
+                dateEnd: 'Present',
+                location: 'Remote',
+                context: 'Full-stack web development experience demonstrating ability to take domain knowledge from operational work and implement it as production software. Experience with responsive design, user-focused interfaces, and deployment optimization.',
+                accomplishments: [
+                    'Developed responsive web applications using HTML, CSS, JavaScript',
+                    'Translated user needs into functional web solutions',
+                    'Implemented pixel-perfect responsive design',
+                    'Optimized deployment and hosting (Cloudflare Pages)',
+                    'Built production-ready applications with zero cost infrastructure',
+                    'Maintained and improved applications based on user feedback'
+                ],
+                skills: ['Web Development', 'JavaScript', 'Full-Stack', 'HTML', 'CSS', 'Responsive Design']
+            },
+            'education': {
+                title: 'Grade 12 Education & Self-Directed Learning',
+                company: 'C.A.B.E. Secondary',
+                dateStart: '2010',
+                dateEnd: 'Ongoing',
+                location: 'Coquitlam, BC',
+                context: 'Formal secondary education completed 2010. Continuous self-directed technical education through hands-on experimentation, documentation review, and collaborative learning with focus on systems administration, infrastructure, and security.',
+                accomplishments: [
+                    'Completed formal secondary education (Grade 12)',
+                    'Continuous self-directed learning in technical domains',
+                    'Deep focus on systems administration and infrastructure',
+                    'Hands-on experimentation and practical skill development',
+                    'Passionate about emerging technologies and continuous improvement',
+                    'Proven ability to master complex technical concepts independently'
+                ],
+                skills: ['Education', 'Learning', 'Self-Directed', 'Systems', 'Infrastructure']
+            },
+            'certifications': {
+                title: 'Professional Certifications & Training',
+                company: 'Professional Development',
+                dateStart: '',
+                dateEnd: '',
+                location: '',
+                context: 'Current professional certifications reflecting commitment to operational excellence, safety, and continuous professional development. All certifications maintained in current compliance status.',
+                accomplishments: [
+                    'Forklift Operator Certification',
+                    'Reach Truck Operator Certification',
+                    'Order Picker Operator Certification',
+                    'Workplace Safety Training',
+                    'Equipment operation with safety-first mindset',
+                    'Commitment to regulatory compliance and best practices'
+                ],
+                skills: ['Certified', 'Equipment', 'Safety', 'Compliance', 'Operations']
+            }
+        };
+
+        function openModal(key) {
+            const data = modalData[key];
+            if (!data) return;
+
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-company').textContent = data.company;
+
+            // Build meta information
+            const metaHtml = [];
+            if (data.dateStart || data.dateEnd) {
+                metaHtml.push(`<div class="modal-meta-item"><i class="fas fa-calendar"></i> ${data.dateStart} - ${data.dateEnd}</div>`);
+            }
+            if (data.location) {
+                metaHtml.push(`<div class="modal-meta-item"><i class="fas fa-map-marker-alt"></i> ${data.location}</div>`);
+            }
+            document.getElementById('modal-meta').innerHTML = metaHtml.join('');
+
+            // Context section
+            if (data.context) {
+                document.getElementById('modal-context').textContent = data.context;
+                document.getElementById('modal-context-section').style.display = 'block';
+            } else {
+                document.getElementById('modal-context-section').style.display = 'none';
+            }
+
+            // Accomplishments section
+            if (data.accomplishments && data.accomplishments.length) {
+                const accomplishmentsList = document.getElementById('modal-accomplishments');
+                accomplishmentsList.innerHTML = data.accomplishments.map(a => `<li>${a}</li>`).join('');
+                document.getElementById('modal-accomplishments-section').style.display = 'block';
+            } else {
+                document.getElementById('modal-accomplishments-section').style.display = 'none';
+            }
+
+            // Skills section
+            if (data.skills && data.skills.length) {
+                const skillsContainer = document.getElementById('modal-skills');
+                skillsContainer.innerHTML = data.skills.map(s => `<div class="modal-tag">${s}</div>`).join('');
+                document.getElementById('modal-skills-section').style.display = 'block';
+            } else {
+                document.getElementById('modal-skills-section').style.display = 'none';
+            }
+
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active');
+        }
+
+        function openProfileModal() {
+            document.getElementById('profile-modal-overlay').classList.add('active');
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            
+            // Save preference to localStorage
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', isDarkMode);
+            
+            // Update button text in profile modal
+            const darkModeText = document.getElementById('dark-mode-text');
+            if (darkModeText) {
+                darkModeText.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+            }
+            
+            // Update icon in search bar
+            const themeIcon = document.getElementById('theme-icon');
+            const themeTooltip = document.getElementById('theme-tooltip');
+            if (themeIcon) {
+                if (isDarkMode) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    themeTooltip.textContent = 'Light Mode';
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    themeTooltip.textContent = 'Dark Mode';
+                }
+            }
+        }
+
+        // Load dark mode preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                const darkModeText = document.getElementById('dark-mode-text');
+                if (darkModeText) {
+                    darkModeText.textContent = 'Light Mode';
+                }
+                
+                // Update search bar icon
+                const themeIcon = document.getElementById('theme-icon');
+                const themeTooltip = document.getElementById('theme-tooltip');
+                if (themeIcon) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    themeTooltip.textContent = 'Light Mode';
+                }
+            }
+        });
+
+        function closeProfileModal() {
+            document.getElementById('profile-modal-overlay').classList.remove('active');
+        }
+
+        document.getElementById('profile-modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProfileModal();
+            }
+        });
+
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        function filterCategory(category) {
+            const tabs = document.querySelectorAll('.tab');
+            const results = document.querySelectorAll('[data-category]');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            event.target.closest('.tab').classList.add('active');
+
+            if (category === 'all') {
+                results.forEach(r => r.style.display = '');
+            } else {
+                results.forEach(r => {
+                    if (r.dataset.category === category) {
+                        r.style.display = '';
+                    } else {
+                        r.style.display = 'none';
+                    }
+                });
+            }
+
+            updateResultCount();
+        }
+
+        function updateResultCount() {
+            const visible = Array.from(document.querySelectorAll('[data-category]')).filter(r => r.style.display !== 'none').length;
+            document.getElementById('result-count').textContent = visible;
+        }
+
+        function searchResults(query) {
+            const results = document.querySelectorAll('[data-category]');
+            const lowerQuery = query.toLowerCase();
+
+            if (!query.trim()) {
+                results.forEach(r => r.style.display = '');
+                updateResultCount();
+                return;
+            }
+
+            results.forEach(result => {
+                const title = result.querySelector('.result-title')?.textContent.toLowerCase() || '';
+                const snippet = result.querySelector('.result-snippet')?.textContent.toLowerCase() || '';
+                const breadcrumb = result.querySelector('.result-breadcrumb')?.textContent.toLowerCase() || '';
+                const tags = result.querySelector('.result-tags')?.textContent.toLowerCase() || '';
+
+                const matches = title.includes(lowerQuery) || 
+                               snippet.includes(lowerQuery) || 
+                               breadcrumb.includes(lowerQuery) ||
+                               tags.includes(lowerQuery);
+
+                result.style.display = matches ? '' : 'none';
+            });
+
+            updateResultCount();
+        }
+
+        // Search functionality
+        const searchInput = document.querySelector('.topbar-search input');
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                searchResults(e.target.value);
+            });
+
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    searchResults(e.target.value);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
