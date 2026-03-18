@@ -1050,13 +1050,37 @@
         @media (max-width: 680px) {
             .topbar {
                 flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 12px 16px;
+            }
+
+            .topbar-logo {
+                position: static;
+                order: 1;
+            }
+
+            .topbar-right {
+                position: static;
+                order: 2;
+                gap: 8px;
+            }
+
+            .topbar-icon {
+                font-size: 18px;
+            }
+
+            .profile-avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 13px;
             }
 
             .topbar-search {
                 max-width: 100%;
                 order: 3;
                 flex-basis: 100%;
-                margin-top: 12px;
+                margin-top: 16px;
+                width: 100%;
             }
 
             .tabs {
