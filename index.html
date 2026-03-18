@@ -207,6 +207,10 @@
             color: var(--text-secondary);
             transition: all 0.3s ease;
             border-radius: 50%;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
         }
 
         .theme-toggle:hover {
@@ -227,6 +231,10 @@
             color: var(--text-secondary);
             font-size: 20px;
             transition: color 0.3s ease;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
         }
 
         .profile-avatar {
@@ -240,6 +248,9 @@
             justify-content: center;
             font-weight: 700;
             cursor: pointer;
+            border: none;
+            padding: 0;
+            font-family: inherit;
         }
 
         /* MAIN CONTAINER */
@@ -283,6 +294,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: inherit;
         }
 
         .tab:hover {
@@ -1071,28 +1087,38 @@
         </div>
         <div class="topbar-search">
             <i class="fas fa-search"></i>
-            <input type="text" placeholder="Systems Administrator | Infrastructure Engineer" value="Systems Administrator | Infrastructure Engineer">
+            <input type="text" placeholder="Systems Administrator | Infrastructure Engineer" value="Systems Administrator | Infrastructure Engineer" aria-label="Search systems and infrastructure info">
             <div class="tooltip-container">
-                <i class="fas fa-moon theme-toggle" onclick="toggleDarkMode()" id="theme-icon"></i>
+                <button class="theme-toggle" onclick="toggleDarkMode()" id="theme-button" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </button>
                 <span class="tooltip" id="theme-tooltip">Dark Mode</span>
             </div>
-            <i class="fas fa-sliders-h"></i>
+            <button class="topbar-icon" aria-label="Search filters">
+                <i class="fas fa-sliders-h"></i>
+            </button>
         </div>
         <div class="topbar-right">
             <div class="tooltip-container">
-                <i class="fas fa-microphone topbar-icon"></i>
+                <button class="topbar-icon" aria-label="Voice search">
+                    <i class="fas fa-microphone"></i>
+                </button>
                 <span class="tooltip">Voice Search</span>
             </div>
             <div class="tooltip-container">
-                <i class="fas fa-search topbar-icon"></i>
+                <button class="topbar-icon" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
                 <span class="tooltip">Search</span>
             </div>
             <div class="tooltip-container">
-                <i class="fas fa-th topbar-icon"></i>
+                <button class="topbar-icon" aria-label="Apps">
+                    <i class="fas fa-th"></i>
+                </button>
                 <span class="tooltip">Apps</span>
             </div>
             <div class="tooltip-container" style="margin-left: 8px;">
-                <div class="profile-avatar" onclick="openProfileModal()">L</div>
+                <button class="profile-avatar" onclick="openProfileModal()" aria-label="View profile">L</button>
                 <span class="tooltip">Profile</span>
             </div>
         </div>
@@ -1104,30 +1130,30 @@
         <div class="left-column">
             <!-- TABS -->
             <div class="tabs">
-                <a class="tab active tooltip-container" onclick="filterCategory('all'); return false;">
+                <button class="tab active tooltip-container" onclick="filterCategory('all', event); return false;">
                     <i class="fas fa-search"></i> All
                     <span class="tooltip">All Results</span>
-                </a>
-                <a class="tab tooltip-container" onclick="filterCategory('experience'); return false;">
+                </button>
+                <button class="tab tooltip-container" onclick="filterCategory('experience', event); return false;">
                     <i class="fas fa-briefcase"></i> Experience
                     <span class="tooltip">Work Experience</span>
-                </a>
-                <a class="tab tooltip-container" onclick="filterCategory('education'); return false;">
+                </button>
+                <button class="tab tooltip-container" onclick="filterCategory('education', event); return false;">
                     <i class="fas fa-graduation-cap"></i> Education
                     <span class="tooltip">Education</span>
-                </a>
-                <a class="tab tooltip-container" onclick="filterCategory('skills'); return false;">
+                </button>
+                <button class="tab tooltip-container" onclick="filterCategory('skills', event); return false;">
                     <i class="fas fa-star"></i> Skills
                     <span class="tooltip">Technical Skills</span>
-                </a>
-                <a class="tab tooltip-container" onclick="filterCategory('projects'); return false;">
+                </button>
+                <button class="tab tooltip-container" onclick="filterCategory('projects', event); return false;">
                     <i class="fas fa-folder"></i> Projects
                     <span class="tooltip">Projects</span>
-                </a>
-                <a class="tab tooltip-container" onclick="filterCategory('more'); return false;">
+                </button>
+                <button class="tab tooltip-container" onclick="filterCategory('more', event); return false;">
                     <i class="fas fa-ellipsis-h"></i> More
                     <span class="tooltip">More Options</span>
-                </a>
+                </button>
             </div>
 
             <!-- RESULTS INFO -->
@@ -1359,7 +1385,7 @@
     <!-- PROFILE MODAL -->
     <div id="profile-modal-overlay" class="profile-modal-overlay">
         <div class="profile-modal">
-            <button class="profile-modal-close" onclick="closeProfileModal()">✕</button>
+            <button class="profile-modal-close" onclick="closeProfileModal()" aria-label="Close profile modal">✕</button>
             
             <div class="profile-modal-header">
                 <div class="profile-modal-avatar">
@@ -1424,7 +1450,7 @@
                     <div class="modal-title" id="modal-title">Title</div>
                     <div class="modal-company" id="modal-company">Company</div>
                 </div>
-                <button class="modal-close" onclick="closeModal()">✕</button>
+                <button class="modal-close" onclick="closeModal()" aria-label="Close details modal">✕</button>
             </div>
 
             <div class="modal-meta" id="modal-meta"></div>
@@ -1676,7 +1702,8 @@
                 darkModeText.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
             }
             
-            // Update icon in search bar
+            // Update icon and aria-label in search bar
+            const themeButton = document.getElementById('theme-button');
             const themeIcon = document.getElementById('theme-icon');
             const themeTooltip = document.getElementById('theme-tooltip');
             if (themeIcon) {
@@ -1684,10 +1711,12 @@
                     themeIcon.classList.remove('fa-moon');
                     themeIcon.classList.add('fa-sun');
                     themeTooltip.textContent = 'Light Mode';
+                    if (themeButton) themeButton.setAttribute('aria-label', 'Toggle light mode');
                 } else {
                     themeIcon.classList.remove('fa-sun');
                     themeIcon.classList.add('fa-moon');
                     themeTooltip.textContent = 'Dark Mode';
+                    if (themeButton) themeButton.setAttribute('aria-label', 'Toggle dark mode');
                 }
             }
         }
@@ -1702,13 +1731,15 @@
                     darkModeText.textContent = 'Light Mode';
                 }
                 
-                // Update search bar icon
+                // Update search bar icon and aria-label
+                const themeButton = document.getElementById('theme-button');
                 const themeIcon = document.getElementById('theme-icon');
                 const themeTooltip = document.getElementById('theme-tooltip');
                 if (themeIcon) {
                     themeIcon.classList.remove('fa-moon');
                     themeIcon.classList.add('fa-sun');
                     themeTooltip.textContent = 'Light Mode';
+                    if (themeButton) themeButton.setAttribute('aria-label', 'Toggle light mode');
                 }
             }
         });
@@ -1735,7 +1766,7 @@
             }
         });
 
-        function filterCategory(category) {
+        function filterCategory(category, event) {
             const tabs = document.querySelectorAll('.tab');
             const results = document.querySelectorAll('[data-category]');
 
