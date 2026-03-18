@@ -264,6 +264,12 @@
             width: 100%;
         }
 
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1600px;
+            }
+        }
+
         /* LEFT COLUMN */
         .left-column {
             flex: 1;
@@ -272,6 +278,12 @@
             background: var(--bg-primary);
             transition: background-color 0.3s ease;
             min-height: 100%;
+        }
+
+        @media (min-width: 1400px) {
+            .left-column {
+                max-width: 900px;
+            }
         }
 
         /* TABS */
@@ -288,7 +300,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             cursor: pointer;
-            padding-bottom: 12px;
+            padding: 0 0 12px 0;
             border-bottom: 3px solid transparent;
             transition: all 0.2s;
             display: flex;
@@ -1795,7 +1807,9 @@
             const results = document.querySelectorAll('[data-category]');
 
             tabs.forEach(t => t.classList.remove('active'));
-            event.target.closest('.tab').classList.add('active');
+            if (event && event.target) {
+                event.target.closest('.tab').classList.add('active');
+            }
 
             if (category === 'all') {
                 results.forEach(r => r.style.display = '');
