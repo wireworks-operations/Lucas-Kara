@@ -1824,68 +1824,70 @@
             }
         });
 
+        // Performance utility: Debounce function to limit expensive operations
+        function debounce(func, wait) {
+            let timeout;
+            function debounced(...args) {
+                const context = this;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), wait);
+            }
+            debounced.cancel = () => clearTimeout(timeout);
+            return debounced;
+        }
+
         function filterCategory(category, event) {
             const tabs = document.querySelectorAll('.tab');
             // Optimized: Use cache if available
             const results = resultsCache || [];
+            let visibleCount = 0;
 
             tabs.forEach(t => t.classList.remove('active'));
             if (event && event.target) {
                 event.target.closest('.tab').classList.add('active');
             }
 
-            if (category === 'all') {
-                results.forEach(res => res.element.style.display = '');
-            } else {
-                results.forEach(res => {
-                    if (res.category === category) {
-                        res.element.style.display = '';
-                    } else {
-                        res.element.style.display = 'none';
-                    }
-                });
-            }
+            results.forEach(res => {
+                const isMatch = category === 'all' || res.category === category;
+                res.element.style.display = isMatch ? '' : 'none';
+                if (isMatch) visibleCount++;
+            });
 
-            updateResultCount();
-        }
-
-        function updateResultCount() {
-            // Optimized: Use cache if available
-            const results = resultsCache || [];
-            const visible = results.filter(res => res.element.style.display !== 'none').length;
-            document.getElementById('result-count').textContent = visible;
+            // Single pass: Filter and update count simultaneously
+            document.getElementById('result-count').textContent = visibleCount;
         }
 
         function searchResults(query) {
-            // Optimized: Use cache if available, otherwise query DOM once and update cache
+            // Optimized: Use cache if available
             const results = resultsCache || [];
             const lowerQuery = query.toLowerCase().trim();
-
-            if (!lowerQuery) {
-                results.forEach(res => res.element.style.display = '');
-                updateResultCount();
-                return;
-            }
+            let visibleCount = 0;
 
             results.forEach(res => {
-                // Optimized: Search pre-extracted text
-                const matches = res.searchText.includes(lowerQuery);
-                res.element.style.display = matches ? '' : 'none';
+                const isMatch = !lowerQuery || res.searchText.includes(lowerQuery);
+                res.element.style.display = isMatch ? '' : 'none';
+                if (isMatch) visibleCount++;
             });
 
-            updateResultCount();
+            // Single pass: Search and update count simultaneously
+            document.getElementById('result-count').textContent = visibleCount;
         }
 
         // Search functionality
         const searchInput = document.querySelector('.topbar-search input');
         if (searchInput) {
+            // Debounced search to avoid excessive processing during rapid typing
+            const debouncedSearch = debounce((query) => searchResults(query), 150);
+
             searchInput.addEventListener('input', function(e) {
-                searchResults(e.target.value);
+                debouncedSearch(e.target.value);
             });
 
             searchInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
+                    // Cancel any pending debounced searches and trigger immediate search
+                    debouncedSearch.cancel();
                     searchResults(e.target.value);
                 }
             });
