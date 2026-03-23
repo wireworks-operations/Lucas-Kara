@@ -1520,6 +1520,9 @@
     </div>
 
     <script>
+        // Cache DOM references for performance
+        let resultsCache = null;
+
         const modalData = {
             'wire-tools': {
                 title: 'Wire Tools Suite — Production Web Application',
@@ -1763,8 +1766,21 @@
             }
         }
 
-        // Load dark mode preference on page load
+        // Initialize results cache and load dark mode preference on page load
         document.addEventListener('DOMContentLoaded', function() {
+            // Pre-cache result elements and their content for faster search/filtering
+            const resultElements = document.querySelectorAll('[data-category]');
+            resultsCache = Array.from(resultElements).map(el => ({
+                element: el,
+                category: el.dataset.category,
+                searchText: (
+                    (el.querySelector('.result-title')?.textContent || '') + ' ' +
+                    (el.querySelector('.result-snippet')?.textContent || '') + ' ' +
+                    (el.querySelector('.result-breadcrumb')?.textContent || '') + ' ' +
+                    (el.querySelector('.result-tags')?.textContent || '')
+                ).toLowerCase()
+            }));
+
             const isDarkMode = localStorage.getItem('dark-mode') === 'true';
             if (isDarkMode) {
                 document.body.classList.add('dark-mode');
@@ -1810,7 +1826,8 @@
 
         function filterCategory(category, event) {
             const tabs = document.querySelectorAll('.tab');
-            const results = document.querySelectorAll('[data-category]');
+            // Optimized: Use cache if available
+            const results = resultsCache || [];
 
             tabs.forEach(t => t.classList.remove('active'));
             if (event && event.target) {
@@ -1818,13 +1835,13 @@
             }
 
             if (category === 'all') {
-                results.forEach(r => r.style.display = '');
+                results.forEach(res => res.element.style.display = '');
             } else {
-                results.forEach(r => {
-                    if (r.dataset.category === category) {
-                        r.style.display = '';
+                results.forEach(res => {
+                    if (res.category === category) {
+                        res.element.style.display = '';
                     } else {
-                        r.style.display = 'none';
+                        res.element.style.display = 'none';
                     }
                 });
             }
@@ -1833,32 +1850,27 @@
         }
 
         function updateResultCount() {
-            const visible = Array.from(document.querySelectorAll('[data-category]')).filter(r => r.style.display !== 'none').length;
+            // Optimized: Use cache if available
+            const results = resultsCache || [];
+            const visible = results.filter(res => res.element.style.display !== 'none').length;
             document.getElementById('result-count').textContent = visible;
         }
 
         function searchResults(query) {
-            const results = document.querySelectorAll('[data-category]');
-            const lowerQuery = query.toLowerCase();
+            // Optimized: Use cache if available, otherwise query DOM once and update cache
+            const results = resultsCache || [];
+            const lowerQuery = query.toLowerCase().trim();
 
-            if (!query.trim()) {
-                results.forEach(r => r.style.display = '');
+            if (!lowerQuery) {
+                results.forEach(res => res.element.style.display = '');
                 updateResultCount();
                 return;
             }
 
-            results.forEach(result => {
-                const title = result.querySelector('.result-title')?.textContent.toLowerCase() || '';
-                const snippet = result.querySelector('.result-snippet')?.textContent.toLowerCase() || '';
-                const breadcrumb = result.querySelector('.result-breadcrumb')?.textContent.toLowerCase() || '';
-                const tags = result.querySelector('.result-tags')?.textContent.toLowerCase() || '';
-
-                const matches = title.includes(lowerQuery) || 
-                               snippet.includes(lowerQuery) || 
-                               breadcrumb.includes(lowerQuery) ||
-                               tags.includes(lowerQuery);
-
-                result.style.display = matches ? '' : 'none';
+            results.forEach(res => {
+                // Optimized: Search pre-extracted text
+                const matches = res.searchText.includes(lowerQuery);
+                res.element.style.display = matches ? '' : 'none';
             });
 
             updateResultCount();

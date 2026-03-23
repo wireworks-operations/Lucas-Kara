@@ -1,0 +1,3 @@
+## 2025-03-23 - [Runtime Search Optimization]
+**Learning:** In a single-page portfolio with dynamic filtering, repeatedly querying the DOM for result elements and their text content on every keystroke or filter click causes unnecessary layout thrashing and CPU load. Caching these elements and their searchable text once at startup or on first use significantly improves runtime performance and responsiveness.
+**Action:** Cache DOM references for frequently accessed elements in interactive components. Pre-calculate searchable text for local search implementations to avoid repeated `.textContent` and `.querySelector` calls.
