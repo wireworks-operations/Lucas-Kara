@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Kara — Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Google Official Colors */
+            --google-blue: #1f2937;
+            --google-red: #dc2626;
+            --google-yellow: #f59e0b;
+            --google-green: #10b981;
+            --google-blue-primary: #3b82f6;
+
+            /* Google Exact Palette */
+            --color-blue: #1a73e8;
+            --color-red: #d33b27;
+            --color-yellow: #f9ab00;
+            --color-green: #0d9488;
+
+            /* Light Mode Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f9f9;
+            --bg-tertiary: #f1f3f4;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --text-tertiary: #70757a;
+            --border-color: #e8e8e8;
+            --border-light: #dadce0;
+
+            /* Shadow Hierarchy */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.05);
+            --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15), 0 15px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #242424;
+            --bg-tertiary: #2f2f2f;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b8b8b8;
+            --text-tertiary: #a0a0a0;
+            --border-color: #363636;
+            --border-light: #424242;
+            --color-blue: #5a9bea;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.35), 0 10px 10px rgba(0, 0, 0, 0.2);
+            --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.35), 0 15px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        html {
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            min-height: 100vh;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Subtle noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 255, 255, 0.02) 0px,
+                    rgba(255, 255, 255, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .topbar-logo {
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            position: absolute;
+            left: 20px;
+            display: flex;
+            gap: 1px;
+        }
+
+        .topbar-logo span {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .topbar-logo span:hover {
+            transform: translateY(-8px);
+        }
+
+        .topbar-logo span.space {
+            width: 4px;
+        }
+
+        .topbar-logo span:nth-child(1) { color: #4285F4; }
+        .topbar-logo span:nth-child(2) { color: #EA4335; }
+        .topbar-logo span:nth-child(3) { color: #FBBC04; }
+        .topbar-logo span:nth-child(4) { color: #4285F4; }
+        .topbar-logo span:nth-child(5) { color: #34A853; }
+        .topbar-logo span:nth-child(6) { color: #EA4335; }
+        .topbar-logo span:nth-child(7) { color: #4285F4; }
+        .topbar-logo span:nth-child(8) { color: #EA4335; }
+        .topbar-logo span:nth-child(9) { color: #FBBC04; }
+        .topbar-logo span:nth-child(10) { color: #4285F4; }
+
+        .topbar-search {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            width: 500px;
+            max-width: 500px;
+            transition: all 0.3s ease;
+        }
+
+        .topbar-search:focus-within {
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1), var(--shadow-md);
+            background: var(--bg-primary);
+        }
+
+        .topbar-search input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .topbar-search input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .topbar-search i {
+            color: #9aa0a6;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .topbar-search i:hover {
+            color: var(--color-blue);
+        }
+
+        .theme-toggle {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: absolute;
+            right: 20px;
+        }
+
+        .topbar-icon {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 20px;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #1a73e8;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: calc(100vh - 80px);
+            width: 100%;
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                max-width: 1800px;
+            }
+        }
+
+        /* LEFT COLUMN */
+        .left-column {
+            flex: 1;
+            padding: 24px 20px 24px 20px;
+            max-width: 700px;
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: 100%;
+        }
+
+        @media (min-width: 1400px) {
+            .left-column {
+                max-width: 1150px;
+            }
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .tab {
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: pointer;
+            padding: 0 0 12px 0;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: inherit;
+        }
+
+        .tab:hover {
+            color: var(--color-blue);
+        }
+
+        .tab.active {
+            color: var(--color-blue);
+            border-bottom-color: var(--color-blue);
+        }
+
+        .tab i {
+            font-size: 16px;
+        }
+
+        /* RESULTS INFO */
+        .results-info {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+        }
+
+        /* FEATURED RESULT */
+        .featured-result {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+            background: var(--bg-secondary);
+            animation: fadeInUp 0.5s ease-out;
+            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .featured-result:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .featured-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #f9ab00;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .featured-label i {
+            font-size: 14px;
+        }
+
+        .featured-breadcrumb {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .featured-breadcrumb i {
+            font-size: 14px;
+        }
+
+        .result-title {
+            color: var(--color-blue);
+            font-size: 18px;
+            text-decoration: none;
+            margin: 8px 0;
+            display: inline-block;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1.3;
+        }
+
+        .result-title:hover {
+            text-decoration: underline;
+        }
+
+        .featured-meta {
+            font-size: 13px;
+            color: #545454;
+            margin: 8px 0;
+        }
+
+        .featured-description {
+            font-size: 14px;
+            color: #545454;
+            line-height: 1.6;
+            margin: 12px 0;
+        }
+
+        .featured-link {
+            color: var(--color-blue);
+            font-size: 13px;
+            text-decoration: none;
+            margin-top: 12px;
+            display: inline-block;
+        }
+
+        .featured-link:hover {
+            text-decoration: underline;
+        }
+
+        /* SITELINKS */
+        .sitelinks-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .sitelink-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sitelink-title {
+            color: var(--color-blue);
+            font-size: 14px;
+            text-decoration: none;
+            margin-bottom: 4px;
+        }
+
+        .sitelink-title:hover {
+            text-decoration: underline;
+        }
+
+        .sitelink-snippet {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* PEOPLE ALSO ASK */
+        .paa-section {
+            margin: 32px 0;
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px;
+        }
+
+        .paa-title {
+            font-size: 20px;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .paa-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .paa-question {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: inherit;
+            font-size: 14px;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .paa-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .paa-item.active .paa-answer {
+            max-height: 200px;
+            padding-bottom: 12px;
+        }
+
+        .paa-item.active i {
+            transform: rotate(180deg);
+        }
+
+        /* RIGHT COLUMN - PROJECT CARD */
+        .right-column {
+            width: 340px;
+            padding: 24px 20px;
+            margin-left: 24px;
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: 100%;
+        }
+
+        @media (min-width: 1201px) {
+            .right-column {
+                margin-left: auto;
+            }
+        }
+
+        .profile-card {
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .profile-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .profile-header {
+            margin-bottom: 16px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .profile-title {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            margin: 16px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+        }
+
+        .profile-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .profile-button {
+            padding: 8px 12px;
+            border: 1px solid var(--border-light);
+            background: white;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--color-blue);
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-button:hover {
+            background: var(--bg-tertiary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .profile-divider {
+            height: 1px;
+            background: #dadce0;
+            margin: 16px 0;
+        }
+
+        .profile-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .profile-info {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-align: left;
+            margin-bottom: 8px;
+        }
+
+        .profile-info-label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .profile-info a {
+            color: var(--color-blue);
+            text-decoration: none;
+        }
+
+        .profile-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* TOOLTIPS */
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            background-color: var(--text-primary);
+            color: var(--bg-primary);
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tooltip-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .right-column {
+                width: 100%;
+                margin-left: 0;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .topbar {
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding: 12px 16px;
+            }
+
+            .topbar-logo {
+                position: static;
+                order: 1;
+            }
+
+            .topbar-right {
+                position: static;
+                order: 2;
+                gap: 8px;
+            }
+
+            .topbar-search {
+                max-width: 100%;
+                order: 3;
+                flex-basis: 100%;
+                margin-top: 16px;
+                width: 100%;
+            }
+
+            .tabs {
+                font-size: 12px;
+                gap: 12px;
+            }
+
+            .tab i {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <!-- TOP BAR -->
+    <div class="topbar">
+        <div class="topbar-logo" onclick="window.location.href='index.html'">
+            <span>L</span><span>u</span><span>c</span><span>a</span><span>s</span><span class="space"></span><span>K</span><span>a</span><span>r</span><span>a</span>
+        </div>
+        <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="EECOL Wire Tools Suite" value="EECOL Wire Tools Suite" aria-label="Search projects">
+            <div class="tooltip-container">
+                <button class="theme-toggle" onclick="toggleDarkMode()" id="theme-button" aria-label="Toggle dark mode">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+                <span class="tooltip" id="theme-tooltip">Light Mode</span>
+            </div>
+            <button class="topbar-icon" aria-label="Search filters">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+        </div>
+        <div class="topbar-right">
+            <div class="tooltip-container">
+                <button class="topbar-icon" aria-label="Voice search">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <span class="tooltip">Voice Search</span>
+            </div>
+            <div class="tooltip-container">
+                <button class="topbar-icon" aria-label="Apps">
+                    <i class="fas fa-th"></i>
+                </button>
+                <span class="tooltip">Apps</span>
+            </div>
+            <div class="tooltip-container" style="margin-left: 8px;">
+                <button class="profile-avatar" onclick="window.location.href='index.html'" aria-label="View profile">L</button>
+                <span class="tooltip">Profile</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- LEFT COLUMN -->
+        <div class="left-column">
+            <!-- TABS -->
+            <div class="tabs">
+                <a href="index.html" class="tab tooltip-container">
+                    <i class="fas fa-search"></i> All
+                    <span class="tooltip">All Results</span>
+                </a>
+                <button class="tab active tooltip-container">
+                    <i class="fas fa-folder-open"></i> Projects
+                    <span class="tooltip">Projects</span>
+                </button>
+            </div>
+
+            <!-- RESULTS INFO -->
+            <div class="results-info">About 1 result (0.24 seconds)</div>
+
+            <!-- FEATURED PROJECT -->
+            <div class="featured-result">
+                <div class="featured-label">
+                    <i class="fas fa-star"></i> FEATURED PROJECT
+                </div>
+                <div class="featured-breadcrumb">
+                    <i class="fas fa-folder-open"></i>
+                    Industrial Operations · Web Application
+                </div>
+                <a class="result-title" href="https://wireworks-operations.github.io/EECOL-Wire-Tools-Suite/" target="_blank">EECOL Wire Tools Suite — Industrial-grade PWA</a>
+                <div class="featured-meta">2025 - Present — "Local-First" Progressive Web App</div>
+                <div class="featured-description">
+                    An enterprise-grade, <strong>"Local-First"</strong> Progressive Web Application (PWA) designed for industrial wire processing. This suite provides specialized calculators, inventory management, and operational tracking tools that persist data directly in the browser's IndexedDB, ensuring 100% uptime without backend dependencies.
+                </div>
+
+                <!-- SITELINKS GRID -->
+                <div class="sitelinks-grid">
+                    <div class="sitelink-item">
+                        <a href="https://wireworks-operations.github.io/EECOL-Wire-Tools-Suite/" class="sitelink-title" target="_blank">Wire Cut Records</a>
+                        <div class="sitelink-snippet">Log and analyze wire cuts with single-pass metric optimization.</div>
+                    </div>
+                    <div class="sitelink-item">
+                        <a href="https://wireworks-operations.github.io/EECOL-Wire-Tools-Suite/" class="sitelink-title" target="_blank">Mark Calculator</a>
+                        <div class="sitelink-snippet">Precise length calculation between wire marks for accurate cutting.</div>
+                    </div>
+                    <div class="sitelink-item">
+                        <a href="https://wireworks-operations.github.io/EECOL-Wire-Tools-Suite/" class="sitelink-title" target="_blank">Inventory Records</a>
+                        <div class="sitelink-snippet">Manage materials with automatic timestamping and length fallbacks.</div>
+                    </div>
+                    <div class="sitelink-item">
+                        <a href="https://wireworks-operations.github.io/EECOL-Wire-Tools-Suite/" class="sitelink-title" target="_blank">Stop Mark Calculator</a>
+                        <div class="sitelink-snippet">Determine machine stop points for targeted cuts and minimal waste.</div>
+                    </div>
+                </div>
+
+                <a class="featured-link" href="https://wireworks-operations.github.io/EECOL-Wire-Tools-Suite/" target="_blank">Launch Tool Suite →</a>
+            </div>
+
+            <!-- Incremental Path: Template for more projects -->
+            <!--
+            <div class="result">
+                <div class="result-breadcrumb">
+                    <i class="fas fa-folder"></i>
+                    Category · Type
+                </div>
+                <a class="result-title" href="#">Project Name</a>
+                <div class="result-snippet">
+                    Short description of the next project.
+                </div>
+            </div>
+            -->
+
+            <!-- PEOPLE ALSO ASK -->
+            <div class="paa-section">
+                <div class="paa-title">People also ask</div>
+
+                <div class="paa-item">
+                    <button class="paa-question" onclick="toggleAccordion(this)">
+                        What is a Local-First Progressive Web App?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="paa-answer">
+                        A Local-First PWA prioritizes client-side storage (like IndexedDB) and logic, allowing the application to function entirely offline. Data is stored on the user's device first, ensuring immediate availability and reliability without needing a constant internet connection or backend server.
+                    </div>
+                </div>
+
+                <div class="paa-item">
+                    <button class="paa-question" onclick="toggleAccordion(this)">
+                        Does the EECOL Wire Tools Suite require an internet connection?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="paa-answer">
+                        No. Once the initial service worker is registered, the entire suite is designed to work 100% offline. All calculators, record systems, and data persistence layers operate within the browser, making it ideal for industrial environments with inconsistent connectivity.
+                    </div>
+                </div>
+
+                <div class="paa-item">
+                    <button class="paa-question" onclick="toggleAccordion(this)">
+                        How is data privacy handled in the project?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="paa-answer">
+                        The project adheres to a "Zero Data Transmission" policy. All sensitive operational data remains in the user's local browser storage (IndexedDB). There is no cloud sync or external API communication, ensuring that proprietary warehouse data never leaves the local terminal.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN - PROJECT CARD -->
+        <div class="right-column">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-name">EECOL WIRE<br>TOOLS SUITE</div>
+                    <div class="profile-title">Industrial Operations Project</div>
+                </div>
+
+                <div class="profile-image">
+                    <i class="fas fa-tools"></i>
+                </div>
+
+                <div class="profile-buttons">
+                    <a class="profile-button" href="https://wireworks-operations.github.io/EECOL-Wire-Tools-Suite/" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Visit Site
+                    </a>
+                    <a class="profile-button" href="https://github.com/eecol/eecol-wire-tools-suite-v2" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+
+                <div class="profile-divider"></div>
+
+                <div class="profile-description">
+                    An enterprise-grade, "Local-First" Progressive Web Application designed for industrial wire processing. Operates entirely client-side with zero external API or database dependencies.
+                </div>
+
+                <div class="profile-divider"></div>
+
+                <div class="profile-info">
+                    <strong class="profile-info-label">Core Technology:</strong>
+                    <span>Vanilla JS, Tailwind, IndexedDB</span>
+                </div>
+
+                <div class="profile-info">
+                    <strong class="profile-info-label">Release Version:</strong>
+                    <span>0.8.0.4 (Beta)</span>
+                </div>
+
+                <div class="profile-info">
+                    <strong class="profile-info-label">License:</strong>
+                    <span>MIT License</span>
+                </div>
+
+                <div class="profile-info">
+                    <strong class="profile-info-label">Platform:</strong>
+                    <span>Web / PWA / Industrial OS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', isDarkMode);
+
+            const themeButton = document.getElementById('theme-button');
+            const themeIcon = document.getElementById('theme-icon');
+            const themeTooltip = document.getElementById('theme-tooltip');
+
+            if (themeIcon) {
+                if (isDarkMode) {
+                    themeIcon.className = 'fas fa-sun';
+                    themeTooltip.textContent = 'Light Mode';
+                    if (themeButton) themeButton.setAttribute('aria-label', 'Toggle light mode');
+                } else {
+                    themeIcon.className = 'fas fa-moon';
+                    themeTooltip.textContent = 'Dark Mode';
+                    if (themeButton) themeButton.setAttribute('aria-label', 'Toggle dark mode');
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = localStorage.getItem('dark-mode') !== 'false';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+                const themeIcon = document.getElementById('theme-icon');
+                const themeTooltip = document.getElementById('theme-tooltip');
+                if (themeIcon) {
+                    themeIcon.className = 'fas fa-moon';
+                    themeTooltip.textContent = 'Dark Mode';
+                }
+            }
+        });
+
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            item.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
