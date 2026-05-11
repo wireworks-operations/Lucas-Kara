@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Kara — Qualifications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Google Official Colors */
+            --google-blue: #1f2937;
+            --google-red: #dc2626;
+            --google-yellow: #f59e0b;
+            --google-green: #10b981;
+            --google-blue-primary: #3b82f6;
+
+            /* Google Exact Palette */
+            --color-blue: #1a73e8;
+            --color-red: #d33b27;
+            --color-yellow: #f9ab00;
+            --color-green: #0d9488;
+
+            /* Light Mode Colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9f9f9;
+            --bg-tertiary: #f1f3f4;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --text-tertiary: #70757a;
+            --border-color: #e8e8e8;
+            --border-light: #dadce0;
+
+            /* Shadow Hierarchy */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.05);
+            --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15), 0 15px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #242424;
+            --bg-tertiary: #2f2f2f;
+            --text-primary: #e0e0e0;
+            --text-secondary: #b8b8b8;
+            --text-tertiary: #a0a0a0;
+            --border-color: #363636;
+            --border-light: #424242;
+            --color-blue: #5a9bea;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.35), 0 10px 10px rgba(0, 0, 0, 0.2);
+            --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.35), 0 15px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        html {
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            min-height: 100vh;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(255, 255, 255, 0.02) 0px,
+                    rgba(255, 255, 255, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* TOP BAR */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .topbar-logo {
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            position: absolute;
+            left: 20px;
+            display: flex;
+            gap: 1px;
+            cursor: pointer;
+        }
+
+        .topbar-logo span {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .topbar-logo span:hover {
+            transform: translateY(-8px);
+        }
+
+        .topbar-logo span.space { width: 4px; }
+        .topbar-logo span:nth-child(1) { color: #4285F4; }
+        .topbar-logo span:nth-child(2) { color: #EA4335; }
+        .topbar-logo span:nth-child(3) { color: #FBBC04; }
+        .topbar-logo span:nth-child(4) { color: #4285F4; }
+        .topbar-logo span:nth-child(5) { color: #34A853; }
+        .topbar-logo span:nth-child(6) { color: #EA4335; }
+        .topbar-logo span:nth-child(7) { color: #4285F4; }
+        .topbar-logo span:nth-child(8) { color: #EA4335; }
+        .topbar-logo span:nth-child(9) { color: #FBBC04; }
+        .topbar-logo span:nth-child(10) { color: #4285F4; }
+
+        .topbar-search {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            width: 500px;
+            max-width: 500px;
+            transition: all 0.3s ease;
+        }
+
+        .topbar-search:focus-within {
+            border-color: var(--color-blue);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1), var(--shadow-md);
+            background: var(--bg-primary);
+        }
+
+        .topbar-search input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .topbar-search i {
+            color: #9aa0a6;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            position: absolute;
+            right: 20px;
+        }
+
+        .topbar-icon {
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 20px;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #1a73e8;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: calc(100vh - 80px);
+            width: 100%;
+        }
+
+        @media (min-width: 1400px) {
+            .container { max-width: 1800px; }
+        }
+
+        /* LEFT COLUMN */
+        .left-column {
+            flex: 1;
+            padding: 24px 20px 24px 20px;
+            max-width: 700px;
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: 100%;
+        }
+
+        @media (min-width: 1400px) {
+            .left-column { max-width: 1150px; }
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .tab {
+            color: var(--text-secondary);
+            text-decoration: none;
+            cursor: pointer;
+            padding: 0 0 12px 0;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: inherit;
+        }
+
+        .tab:hover { color: var(--color-blue); }
+        .tab.active { color: var(--color-blue); border-bottom-color: var(--color-blue); }
+
+        /* RESULTS INFO */
+        .results-info {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+        }
+
+        /* FEATURED RESULT */
+        .featured-result {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+            background: var(--bg-secondary);
+            animation: fadeInUp 0.5s ease-out;
+            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .featured-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #10b981;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .featured-breadcrumb {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .result-title {
+            color: var(--color-blue);
+            font-size: 18px;
+            text-decoration: none;
+            margin: 8px 0;
+            display: inline-block;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1.3;
+        }
+
+        .result-title:hover { text-decoration: underline; }
+
+        .featured-meta {
+            font-size: 13px;
+            color: #545454;
+            margin: 8px 0;
+        }
+
+        .featured-description {
+            font-size: 14px;
+            color: #545454;
+            line-height: 1.6;
+            margin: 12px 0;
+        }
+
+        /* SITELINKS */
+        .sitelinks-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .sitelink-item { display: flex; flex-direction: column; }
+        .sitelink-title { color: var(--color-blue); font-size: 14px; text-decoration: none; margin-bottom: 4px; cursor: pointer; }
+        .sitelink-title:hover { text-decoration: underline; }
+        .sitelink-snippet { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+
+        /* KNOWLEDGE GRAPH SECTIONS */
+        .graph-section {
+            margin: 32px 0;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+
+        .graph-title { font-size: 20px; color: var(--text-primary); margin-bottom: 16px; }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .skill-category-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-category-title i { color: var(--color-blue); }
+
+        .skill-list { list-style: none; padding: 0; margin: 0; }
+        .skill-item {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            padding-left: 12px;
+            position: relative;
+        }
+        .skill-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 4px;
+            height: 4px;
+            background: var(--color-blue);
+            border-radius: 50%;
+        }
+
+        /* RIGHT COLUMN */
+        .right-column {
+            width: 340px;
+            padding: 24px 20px;
+            margin-left: 24px;
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease;
+            min-height: 100%;
+        }
+
+        @media (min-width: 1201px) { .right-column { margin-left: auto; } }
+
+        .profile-card {
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .profile-name { font-size: 24px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; letter-spacing: -0.5px; }
+        .profile-title { font-size: 12px; color: var(--text-tertiary); }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            margin: 16px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+        }
+
+        .profile-divider { height: 1px; background: #dadce0; margin: 16px 0; }
+        .profile-description { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; text-align: left; }
+        .profile-info { font-size: 12px; color: var(--text-secondary); text-align: left; margin-bottom: 8px; }
+        .profile-info-label { font-weight: 500; color: var(--text-primary); }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            padding: 24px;
+            box-shadow: var(--shadow-2xl);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+        .modal-icon { width: 40px; height: 40px; background: #10b981; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; flex-shrink: 0; }
+        .modal-title { font-size: 20px; font-weight: 700; color: var(--text-primary); }
+        .modal-close { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-tertiary); }
+        .modal-bullet-list { list-style: none; padding: 0; margin: 0; }
+        .modal-bullet-list li { margin-bottom: 8px; padding-left: 20px; position: relative; font-size: 13px; color: var(--text-secondary); }
+        .modal-bullet-list li:before { content: "●"; position: absolute; left: 0; color: #10b981; }
+
+        @media (max-width: 680px) {
+            .topbar { flex-wrap: wrap; justify-content: space-between; padding: 12px 16px; }
+            .topbar-logo { position: static; order: 1; }
+            .topbar-right { position: static; order: 2; gap: 8px; }
+            .topbar-search { max-width: 100%; order: 3; flex-basis: 100%; margin-top: 16px; width: 100%; }
+            .tabs { font-size: 12px; gap: 12px; }
+            .tab i { display: none; }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="topbar">
+        <div class="topbar-logo" onclick="window.location.href='index.html'">
+            <span>L</span><span>u</span><span>c</span><span>a</span><span>s</span><span class="space"></span><span>K</span><span>a</span><span>r</span><span>a</span>
+        </div>
+        <div class="topbar-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Technical Qualifications & Expertise" value="Technical Qualifications & Expertise" aria-label="Search qualifications">
+            <div class="tooltip-container">
+                <button class="theme-toggle" onclick="toggleDarkMode()" id="theme-button">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <button class="profile-avatar" onclick="window.location.href='index.html'">L</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left-column">
+            <div class="tabs">
+                <a href="index.html" class="tab"><i class="fas fa-search"></i> All</a>
+                <button class="tab active"><i class="fas fa-star"></i> Qualifications</button>
+            </div>
+
+            <div class="results-info">About 3 results (0.22 seconds)</div>
+
+            <div class="featured-result">
+                <div class="featured-label"><i class="fas fa-award"></i> CORE QUALIFICATIONS</div>
+                <div class="featured-breadcrumb"><i class="fas fa-star"></i> Skills · Certifications · Education</div>
+                <div class="result-title" onclick="openModal('qualifications-overview')">Technical Stack & Professional Qualifications</div>
+                <div class="featured-meta">Systems, Networking, Development, & Industrial Certification</div>
+                <div class="featured-description">
+                    A rigorous systemic overview of technical capabilities. From high-level infrastructure design and zero-trust security architecture to production-grade web development and certified industrial equipment operation.
+                </div>
+
+                <div class="sitelinks-grid">
+                    <div class="sitelink-item">
+                        <div class="sitelink-title" onclick="openModal('infra-stack')">Infrastructure Stack</div>
+                        <div class="sitelink-snippet">Proxmox, Docker, Linux, & Zero-Trust networking.</div>
+                    </div>
+                    <div class="sitelink-item">
+                        <div class="sitelink-title" onclick="openModal('dev-stack')">Development Stack</div>
+                        <div class="sitelink-snippet">HTML/CSS, Vanilla JS, PWA, Cloudflare, & n8n.</div>
+                    </div>
+                    <div class="sitelink-item">
+                        <div class="sitelink-title" onclick="openModal('industrial-certs')">Industrial Certifications</div>
+                        <div class="sitelink-snippet">Forklift, Reach Truck, Order Picker, & Safety.</div>
+                    </div>
+                    <div class="sitelink-item">
+                        <div class="sitelink-title" onclick="openModal('learning-path')">Learning Path</div>
+                        <div class="sitelink-snippet">Self-directed expertise in systems & security.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="graph-section">
+                <div class="graph-title">Technical Knowledge Graph</div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <div class="skill-category-title"><i class="fas fa-server"></i> Systems</div>
+                        <ul class="skill-list">
+                            <li class="skill-item">Linux (Debian/Ubuntu)</li>
+                            <li class="skill-item">Proxmox VE</li>
+                            <li class="skill-item">Docker & Compose</li>
+                            <li class="skill-item">Unraid / NAS Storage</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-category-title"><i class="fas fa-network-wired"></i> Networking</div>
+                        <ul class="skill-list">
+                            <li class="skill-item">Zero-Trust Architecture</li>
+                            <li class="skill-item">Cloudflare Tunnels</li>
+                            <li class="skill-item">Tailscale / Twingate</li>
+                            <li class="skill-item">DNS (Pi-hole/Adguard)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-category-title"><i class="fas fa-code"></i> Development</div>
+                        <ul class="skill-list">
+                            <li class="skill-item">Vanilla JavaScript</li>
+                            <li class="skill-item">CSS (Flex/Grid)</li>
+                            <li class="skill-item">Local-First PWA</li>
+                            <li class="skill-item">n8n Automation</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-category-title"><i class="fas fa-industry"></i> Industrial</div>
+                        <ul class="skill-list">
+                            <li class="skill-item">Forklift Operation</li>
+                            <li class="skill-item">Material Handling</li>
+                            <li class="skill-item">Warehouse Logistics</li>
+                            <li class="skill-item">Operational Safety</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-name">QUALIFICATIONS</div>
+                    <div class="profile-title">Technical Entity Record</div>
+                </div>
+                <div class="profile-image"><i class="fas fa-microchip"></i></div>
+                <div class="profile-description">
+                    Qualified individual with demonstrated mastery in technical systems and industrial operations. Focuses on robust, maintainable, and local-first solutions.
+                </div>
+                <div class="profile-divider"></div>
+                <div class="profile-info"><strong class="profile-info-label">Status:</strong> Fully Certified</div>
+                <div class="profile-info"><strong class="profile-info-label">Specialty:</strong> Infrastructure & Ops</div>
+                <div class="profile-info"><strong class="profile-info-label">Audit:</strong> Passed Dec 2025</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="modal-title" id="modal-title">Title</div>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div id="modal-content">
+                <ul class="modal-bullet-list" id="modal-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modalData = {
+            'qualifications-overview': {
+                title: 'Qualifications Overview',
+                items: [
+                    'Multi-domain expertise: IT Infrastructure + Industrial Operations',
+                    'Strong advocate for Zero-Trust and Local-First principles',
+                    'Certified operator of heavy warehouse equipment',
+                    'Self-taught professional with high technical adaptability',
+                    'Committed to operational safety and system uptime'
+                ]
+            },
+            'infra-stack': {
+                title: 'Infrastructure Stack Details',
+                items: [
+                    'Virtualization: Proxmox VE, LXC, and VM management',
+                    'Containerization: Docker, Docker-Compose, Portainer',
+                    'OS: Debian, Ubuntu, DietPi, Alpine Linux',
+                    'Storage: Unraid, ZFS, SMB/NFS configurations',
+                    'Monitoring: Uptime Kuma, Dashboards'
+                ]
+            },
+            'dev-stack': {
+                title: 'Development Stack Details',
+                items: [
+                    'Frontend: HTML5, CSS3 (Modern layout techniques), Vanilla JS',
+                    'Capabilities: PWA (Service Workers, IndexedDB) for offline use',
+                    'Deployment: Cloudflare Pages, GitHub Actions',
+                    'Automation: n8n workflow design and implementation',
+                    'Tools: VS Code, Git/GitHub, Browser DevTools'
+                ]
+            },
+            'industrial-certs': {
+                title: 'Industrial Certifications',
+                items: [
+                    'Certified Forklift Operator (Class 1-5)',
+                    'Reach Truck Certification (Narrow Aisle)',
+                    'Order Picker Certification',
+                    'WorkSafeBC Compliance and Safety Training',
+                    'Industrial First Aid Awareness'
+                ]
+            },
+            'learning-path': {
+                title: 'Learning Path & Education',
+                items: [
+                    'Grade 12 Education (C.A.B.E. Secondary, 2010)',
+                    'Ongoing self-directed study in Cybersecurity (Zero-Trust)',
+                    'Hands-on Homelab experimentation (5+ years)',
+                    'Open-source contribution and community learning',
+                    'Documentation-first approach to new technologies'
+                ]
+            }
+        };
+
+        function openModal(key) {
+            const data = modalData[key];
+            if (!data) return;
+            document.getElementById('modal-title').textContent = data.title;
+            const list = document.getElementById('modal-list');
+            list.innerHTML = data.items.map(item => `<li>${item}</li>`).join('');
+            document.getElementById('modal-overlay').classList.add('active');
+        }
+
+        function closeModal() { document.getElementById('modal-overlay').classList.remove('active'); }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('dark-mode', isDarkMode);
+            const themeIcon = document.getElementById('theme-icon');
+            if (themeIcon) themeIcon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = localStorage.getItem('dark-mode') !== 'false';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+                const themeIcon = document.getElementById('theme-icon');
+                if (themeIcon) themeIcon.className = 'fas fa-moon';
+            }
+        });
+
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+</body>
+</html>

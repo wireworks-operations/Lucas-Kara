@@ -1002,6 +1002,30 @@
             position: relative;
         }
 
+        /* SITELINKS INLINE */
+        .sitelinks-inline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+            margin-top: 12px;
+        }
+
+        .sitelink-inline-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sitelink-inline-title {
+            color: var(--color-blue);
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .sitelink-inline-title:hover {
+            text-decoration: underline;
+        }
+
         /* CURSOR CHANGES */
         body {
             cursor: default;
@@ -1177,29 +1201,21 @@
                     <span class="tooltip">All Results</span>
                 </button>
                 <button class="tab tooltip-container" onclick="filterCategory('experience', event); return false;">
-                    <i class="fas fa-briefcase"></i> Experience
-                    <span class="tooltip">Work Experience</span>
-                </button>
-                <button class="tab tooltip-container" onclick="filterCategory('education', event); return false;">
-                    <i class="fas fa-graduation-cap"></i> Education
-                    <span class="tooltip">Education</span>
+                    <i class="fas fa-briefcase"></i> Career
+                    <span class="tooltip">Work Experience & History</span>
                 </button>
                 <button class="tab tooltip-container" onclick="filterCategory('skills', event); return false;">
-                    <i class="fas fa-star"></i> Skills
-                    <span class="tooltip">Technical Skills</span>
+                    <i class="fas fa-star"></i> Qualifications
+                    <span class="tooltip">Technical Skills & Education</span>
                 </button>
                 <a href="projects.html" class="tab tooltip-container">
                     <i class="fas fa-folder"></i> Projects
                     <span class="tooltip">View Dedicated Projects Page</span>
                 </a>
-                <button class="tab tooltip-container" onclick="filterCategory('more', event); return false;">
-                    <i class="fas fa-ellipsis-h"></i> More
-                    <span class="tooltip">More Options</span>
-                </button>
             </div>
 
             <!-- RESULTS INFO -->
-            <div class="results-info">About <span id="result-count">12</span> results (0.33 seconds)</div>
+            <div class="results-info">About <span id="result-count">3</span> results (0.28 seconds)</div>
 
             <!-- FEATURED SPOTLIGHT -->
             <div class="featured-result" data-category="projects">
@@ -1208,153 +1224,72 @@
                 </div>
                 <div class="featured-breadcrumb">
                     <i class="fas fa-folder-open"></i>
-                    Self-Directed Projects · Experience
+                    Industrial Projects · Systems Engineering
                 </div>
-                <a class="result-title" onclick="openModal('wire-tools'); return false;" style="cursor: pointer;">Wire Tools Suite — Production Web Application</a>
-                <div class="featured-meta">2025 - Present — Web Development, Full-Stack</div>
+                <a class="result-title" href="projects.html">Technical Project Ecosystem — Industrial-Grade Tooling</a>
+                <div class="featured-meta">2025 - Present — Integrated Systems & Applications</div>
                 <div class="featured-description">
-                    Identified critical inefficiency in wire cutting and inventory tracking workflows. Built a production web application (HTML, CSS, JavaScript, Cloudflare Pages) that standardized cutting protocols, enabled data-driven inventory management, and reduced material waste. Includes cut logging, calculation tools, and documented best practices. Zero implementation cost.
+                    Consolidated overview of production-ready tools and infrastructure. Featuring the <strong>Wire Tools Suite</strong> (local-first PWA for industrial processing) and high-availability <strong>Homelab Infrastructure</strong> emphasizing zero-trust security.
                 </div>
-                <a class="featured-link" href="#" onclick="openModal('wire-tools'); return false;">Explore more in Projects →</a>
+                <div class="result-tags" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                    <a href="projects.html" class="featured-link" style="margin-top: 0; margin-right: 16px;">View Project Showcase →</a>
+                    <a href="https://wireworks-operations.github.io/EECOL-Wire-Tools-Suite/" target="_blank" class="featured-link" style="margin-top: 0;">Launch Wire Tools Suite →</a>
+                </div>
             </div>
 
-            <!-- RESULT 1 -->
+            <!-- CONSOLIDATED CAREER -->
             <div class="result" data-category="experience">
                 <div class="result-breadcrumb">
                     <i class="fas fa-briefcase"></i>
-                    EECOL Electric - Port Kells · Experience
+                    Professional History · Experience
                 </div>
-                <a class="result-title" onclick="openModal('wire-cutter'); return false;" style="cursor: pointer;">Wire Cutter & Material Handler</a>
-                <div class="featured-meta">April 2025 - Present</div>
+                <a class="result-title" href="career.html">Professional Career & Operational Experience</a>
+                <div class="featured-meta">2010 - Present — 15+ Years Comprehensive Experience</div>
                 <div class="result-snippet">
-                    Managing wire cutting operations and material handling in fast-paced industrial environment. Identified critical workflow inefficiencies and developed custom software solution to address data visibility gap. Demonstrates precise execution, attention to detail, and safety consciousness.
+                    Integrated career timeline documenting over 15 years of operational excellence in industrial and logistics environments. Currently at <strong>EECOL Electric</strong>, specializing in material handling and workflow technicalization. Proven track record across multiple employers in warehouse management, safety leadership, and process optimization.
                 </div>
-                <div class="result-tags">
-                    <span class="tag">Operations</span>
-                    <span class="tag">Warehouse</span>
+
+                <div class="sitelinks-inline">
+                    <div class="sitelink-inline-item">
+                        <a href="career.html" class="sitelink-inline-title">EECOL Electric Role</a>
+                    </div>
+                    <div class="sitelink-inline-item">
+                        <a href="career.html" class="sitelink-inline-title">Industrial Handling</a>
+                    </div>
+                    <div class="sitelink-inline-item">
+                        <a href="career.html" class="sitelink-inline-title">Logistics Operations</a>
+                    </div>
+                    <div class="sitelink-inline-item">
+                        <a href="career.html" class="sitelink-inline-title">Multiple Employers</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- RESULT 2 -->
-            <div class="result" data-category="experience">
-                <div class="result-breadcrumb">
-                    <i class="fas fa-briefcase"></i>
-                    Multiple Employers · Experience
-                </div>
-                <a class="result-title" onclick="openModal('warehouse'); return false;" style="cursor: pointer;">Warehouse Operations & Material Handling</a>
-                <div class="featured-meta">2010 - 2025 — 10+ years</div>
-                <div class="result-snippet">
-                    Hands-on warehouse and logistics experience with consistent reliability and safety consciousness. Certified operator of precision equipment (forklift, reach truck, order picker). Developed deep understanding of industrial processes and operational efficiency requirements.
-                </div>
-                <div class="result-tags">
-                    <span class="tag">Logistics</span>
-                    <span class="tag">Equipment</span>
-                    <span class="tag">Operations</span>
-                </div>
-            </div>
-
-            <!-- RESULT 3 -->
-            <div class="result" data-category="projects">
-                <div class="result-breadcrumb">
-                    <i class="fas fa-folder-open"></i>
-                    Hobby · Self-Directed Projects
-                </div>
-                <a class="result-title" onclick="openModal('homelab'); return false;" style="cursor: pointer;">Homelab Infrastructure & Systems Administration</a>
-                <div class="featured-meta">Ongoing — Infrastructure, Linux, Security</div>
-                <div class="result-snippet">
-                    Designed and implemented multi-platform production infrastructure emphasizing zero-trust architecture. Built ecosystem replacing SaaS dependencies: media automation, storage solutions, DNS infrastructure, monitoring, and AI/ML services. Network security: zero-trust design via Cloudflare Tunnels, Tailscale, Twingate. No open inbound ports except HTTP/HTTPS.
-                </div>
-                <div class="result-tags">
-                    <span class="tag">Infrastructure</span>
-                    <span class="tag">Linux</span>
-                    <span class="tag">Security</span>
-                    <span class="tag">Automation</span>
-                </div>
-            </div>
-
-            <!-- RESULT 4 -->
+            <!-- CONSOLIDATED QUALIFICATIONS -->
             <div class="result" data-category="skills">
                 <div class="result-breadcrumb">
                     <i class="fas fa-star"></i>
-                     · Technical Skills
+                    Technical Knowledge Graph · Qualifications
                 </div>
-                <a class="result-title" onclick="openModal('technical-skills'); return false;" style="cursor: pointer;">Technical Expertise & Knowledge</a>
-                <div class="featured-meta">Systems, Networking, Development</div>
+                <a class="result-title" href="qualifications.html">Technical Qualifications & Professional Expertise</a>
+                <div class="featured-meta">Infrastructure, Networking, Development, & Certifications</div>
                 <div class="result-snippet">
-                    Systems administration • Network architecture • Security-conscious design • Infrastructure automation • Linux systems • Docker containerization • Proxmox virtualization • Full-stack web development (HTML/CSS/JavaScript) • n8n workflow automation • Cloudflare deployment
+                    Systemic overview of technical competencies and qualifications. Expertise in <strong>Systems Administration</strong> (Linux, Proxmox, Docker), <strong>Security Architecture</strong> (Zero-Trust, VPNs, Reverse Proxies), and <strong>Full-Stack Development</strong>. Includes professional industrial certifications for equipment operation and workplace safety.
                 </div>
-                <div class="result-tags">
-                    <span class="tag">Systems</span>
-                    <span class="tag">Networking</span>
-                    <span class="tag">Development</span>
-                </div>
-            </div>
 
-            <!-- RESULT 5 -->
-            <div class="result" data-category="skills">
-                <div class="result-breadcrumb">
-                    <i class="fas fa-star"></i>
-                     · Networking & Security
-                </div>
-                <a class="result-title" onclick="openModal('networking'); return false;" style="cursor: pointer;">Networking & Security Architecture</a>
-                <div class="featured-meta">Zero-Trust, DNS, VPN, Reverse Proxy</div>
-                <div class="result-snippet">
-                    DNS, reverse proxy (Zoraxy), zero-trust design. Cloudflare Tunnels, Tailscale, Twingate for access. User authentication and segmentation as first-class concerns. No open inbound ports except 80/443. Visibility isn't optional, access isn't implicit, understanding is non-negotiable.
-                </div>
-                <div class="result-tags">
-                    <span class="tag">Security</span>
-                    <span class="tag">Networking</span>
-                </div>
-            </div>
-
-            <!-- RESULT 6 -->
-            <div class="result" data-category="projects">
-                <div class="result-breadcrumb">
-                    <i class="fas fa-folder-open"></i>
-                    Hobby · Web Development
-                </div>
-                <a class="result-title" onclick="openModal('web-dev'); return false;" style="cursor: pointer;">Full-Stack Web Development</a>
-                <div class="featured-meta">HTML, CSS, JavaScript, Responsive Design</div>
-                <div class="result-snippet">
-                    Full-stack experience with HTML, CSS, and JavaScript. Capability to identify user needs and translate them into functional web solutions. Wire Tools Suite demonstrates ability to take domain knowledge and implement it as production software. Experience with responsive design and deployment optimization.
-                </div>
-                <div class="result-tags">
-                    <span class="tag">Web Development</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">Full-Stack</span>
-                </div>
-            </div>
-
-            <!-- RESULT 7 -->
-            <div class="result" data-category="education">
-                <div class="result-breadcrumb">
-                    <i class="fas fa-graduation-cap"></i>
-                    C.A.B.E. Secondary · Education
-                </div>
-                <a class="result-title" onclick="openModal('education'); return false;" style="cursor: pointer;">Grade 12 Education & Self-Directed Learning</a>
-                <div class="featured-meta">2010 - Ongoing</div>
-                <div class="result-snippet">
-                    Formal secondary education completed 2010. Continuous self-directed technical education through hands-on experimentation and collaborative learning. Focus on systems administration, infrastructure, networking, and security. Passionate about continuous learning and emerging technologies.
-                </div>
-                <div class="result-tags">
-                    <span class="tag">Education</span>
-                    <span class="tag">Learning</span>
-                </div>
-            </div>
-
-            <!-- RESULT 8 -->
-            <div class="result" data-category="skills">
-                <div class="result-breadcrumb">
-                    <i class="fas fa-star"></i>
-                     · Certifications
-                </div>
-                <a class="result-title" onclick="openModal('certifications'); return false;" style="cursor: pointer;">Professional Certifications & Training</a>
-                <div class="featured-meta">Equipment Operation, Workplace Safety</div>
-                <div class="result-snippet">
-                    Forklift Operator Certification • Reach Truck Operator Certification • Order Picker Operator Certification • Workplace Safety Training. All certifications maintain current compliance and reflect commitment to operational excellence and safety.
-                </div>
-                <div class="result-tags">
-                    <span class="tag">Certified</span>
+                <div class="sitelinks-inline">
+                    <div class="sitelink-inline-item">
+                        <a href="qualifications.html" class="sitelink-inline-title">Infrastructure Stack</a>
+                    </div>
+                    <div class="sitelink-inline-item">
+                        <a href="qualifications.html" class="sitelink-inline-title">Development Stack</a>
+                    </div>
+                    <div class="sitelink-inline-item">
+                        <a href="qualifications.html" class="sitelink-inline-title">Industrial Certs</a>
+                    </div>
+                    <div class="sitelink-inline-item">
+                        <a href="qualifications.html" class="sitelink-inline-title">Education & Learning</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1484,253 +1419,9 @@
         </div>
     </div>
 
-    <!-- MODAL -->
-    <div id="modal-overlay" class="modal-overlay">
-        <div class="modal">
-            <div class="modal-header">
-                <div class="modal-icon">
-                    <i class="fas fa-folder-open"></i>
-                </div>
-                <div class="modal-title-section">
-                    <div class="modal-title" id="modal-title">Title</div>
-                    <div class="modal-company" id="modal-company">Company</div>
-                </div>
-                <button class="modal-close" onclick="closeModal()" aria-label="Close details modal">✕</button>
-            </div>
-
-            <div class="modal-meta" id="modal-meta"></div>
-
-            <div class="modal-section" id="modal-context-section" style="display: none;">
-                <div class="modal-section-title">Context</div>
-                <div class="modal-section-content" id="modal-context"></div>
-            </div>
-
-            <div class="modal-section" id="modal-accomplishments-section" style="display: none;">
-                <div class="modal-section-title">Core Accomplishments</div>
-                <ul class="modal-bullet-list" id="modal-accomplishments"></ul>
-            </div>
-
-            <div class="modal-section" id="modal-skills-section" style="display: none;">
-                <div class="modal-section-title">Skill Stack</div>
-                <div class="modal-tags" id="modal-skills"></div>
-            </div>
-
-            <div class="modal-footer">
-                <div class="modal-updated" id="modal-updated">Last updated: Dec 2025</div>
-                <button class="modal-button" onclick="closeModal()">Got it</button>
-            </div>
-        </div>
-    </div>
-
     <script>
         // Cache DOM references for performance
         let resultsCache = null;
-
-        const modalData = {
-            'wire-tools': {
-                title: 'Wire Tools Suite — Production Web Application',
-                company: 'EECOL Electric - Port Kells',
-                dateStart: '2025',
-                dateEnd: 'Present',
-                location: 'Port Kells, BC',
-                context: 'Identified critical inefficiency in wire cutting and inventory tracking workflows. Built a production web application that standardized cutting protocols, enabled data-driven inventory management, and reduced material waste. Deployed to production with zero implementation cost.',
-                accomplishments: [
-                    'Built responsive web application using HTML, CSS, JavaScript, and Cloudflare Pages',
-                    'Implemented cut logging system for inventory decision-making',
-                    'Developed calculation tools encoding domain knowledge (length, capacity, weight)',
-                    'Standardized cutting protocols reducing material waste',
-                    'Deployed zero-cost infrastructure using Cloudflare',
-                    'System continues to evolve based on operational feedback'
-                ],
-                skills: ['HTML', 'CSS', 'JavaScript', 'Cloudflare Pages', 'Web Development', 'Full-Stack']
-            },
-            'wire-cutter': {
-                title: 'Wire Cutter & Material Handler',
-                company: 'EECOL Electric - Port Kells',
-                dateStart: 'April 2025',
-                dateEnd: 'Present',
-                location: 'Port Kells, BC',
-                context: 'Managing wire cutting operations and material handling in fast-paced industrial environment. Responsible for processing electrical wire and cable while maintaining systems-level visibility across workflow and material handling operations.',
-                accomplishments: [
-                    'Operates precision equipment with consistent accuracy',
-                    'Identifies critical workflow inefficiencies',
-                    'Developed custom software solution to address data visibility gap',
-                    'Demonstrates precise execution and safety consciousness',
-                    'Translates operational knowledge into technical solutions',
-                    'Maintains high standards of quality and attention to detail'
-                ],
-                skills: ['Operations', 'Warehouse', 'Equipment Operation', 'Problem Solving', 'Data Analysis']
-            },
-            'warehouse': {
-                title: 'Warehouse Operations & Material Handling',
-                company: 'Multiple Employers',
-                dateStart: '2010',
-                dateEnd: '2025',
-                location: 'Various Locations',
-                context: 'Hands-on warehouse and logistics experience spanning 15+ years with consistent reliability and safety consciousness. Certified operator of precision equipment and developed deep understanding of industrial processes and operational efficiency.',
-                accomplishments: [
-                    'Certified forklift, reach truck, and order picker operator',
-                    'Consistently demonstrated reliability in high-volume environments',
-                    'Maintained safety-first mindset with zero incidents',
-                    'Developed systems-level thinking through process optimization',
-                    'Gained deep understanding of industrial processes',
-                    'Applied higher-level thinking to material handling within operational constraints'
-                ],
-                skills: ['Logistics', 'Equipment', 'Operations', 'Forklift', 'Reach Truck', 'Order Picker']
-            },
-            'homelab': {
-                title: 'Homelab Infrastructure & Systems Administration',
-                company: 'Self-Directed Projects',
-                dateStart: 'Ongoing',
-                dateEnd: 'Present',
-                location: 'Remote',
-                context: 'Designed and implemented multi-platform production infrastructure emphasizing zero-trust architecture and operational sovereignty. Built comprehensive ecosystem replacing commercial SaaS dependencies with self-hosted solutions.',
-                accomplishments: [
-                    'Implemented 5+ platform infrastructure (Proxmox, Unraid, Docker, CasaOS, DietPi)',
-                    'Created zero-trust architecture with zero inbound exposure except HTTP/HTTPS',
-                    'Built media automation stack (Radarr, Sonarr, Lidarr, Prowlarr)',
-                    'Deployed DNS infrastructure (Pi-Hole, Adguard, Technitium)',
-                    'Implemented reverse proxy (Zoraxy) and VPN solutions (Cloudflare Tunnels, Tailscale, Twingate)',
-                    'Maintained 99%+ uptime for all services with comprehensive monitoring'
-                ],
-                skills: ['Infrastructure', 'Linux', 'Security', 'Automation', 'Docker', 'Networking', 'Proxmox']
-            },
-            'technical-skills': {
-                title: 'Technical Expertise & Knowledge',
-                company: 'Professional Skills',
-                dateStart: '',
-                dateEnd: '',
-                location: '',
-                context: 'Comprehensive technical expertise spanning systems administration, infrastructure architecture, network design, and full-stack development. Self-taught professional with demonstrated ability to master complex technical concepts.',
-                accomplishments: [
-                    'Systems administration and infrastructure automation',
-                    'Network architecture and security-conscious design',
-                    'Linux systems administration and management',
-                    'Docker containerization and Proxmox virtualization',
-                    'Full-stack web development (HTML, CSS, JavaScript)',
-                    'n8n workflow automation and Cloudflare deployment'
-                ],
-                skills: ['Systems', 'Networking', 'Development', 'Linux', 'Docker', 'Proxmox', 'JavaScript']
-            },
-            'networking': {
-                title: 'Networking & Security Architecture',
-                company: 'Professional Skills',
-                dateStart: '',
-                dateEnd: '',
-                location: '',
-                context: 'Specialized expertise in modern security architecture with emphasis on zero-trust principles. Designed and implemented systems where visibility, access control, and understanding are non-negotiable first-class concerns.',
-                accomplishments: [
-                    'Implemented zero-trust network architecture',
-                    'Configured DNS and reverse proxy (Zoraxy)',
-                    'Deployed Cloudflare Tunnels for secure access',
-                    'Implemented VPN solutions (Tailscale, Twingate)',
-                    'Designed user authentication and segmentation',
-                    'Eliminated inbound port exposure while maintaining functionality'
-                ],
-                skills: ['Security', 'Networking', 'Zero-Trust', 'DNS', 'VPN', 'Reverse Proxy', 'Cloudflare']
-            },
-            'web-dev': {
-                title: 'Full-Stack Web Development',
-                company: 'Self-Directed Projects',
-                dateStart: 'Ongoing',
-                dateEnd: 'Present',
-                location: 'Remote',
-                context: 'Full-stack web development experience demonstrating ability to take domain knowledge from operational work and implement it as production software. Experience with responsive design, user-focused interfaces, and deployment optimization.',
-                accomplishments: [
-                    'Developed responsive web applications using HTML, CSS, JavaScript',
-                    'Translated user needs into functional web solutions',
-                    'Implemented pixel-perfect responsive design',
-                    'Optimized deployment and hosting (Cloudflare Pages)',
-                    'Built production-ready applications with zero cost infrastructure',
-                    'Maintained and improved applications based on user feedback'
-                ],
-                skills: ['Web Development', 'JavaScript', 'Full-Stack', 'HTML', 'CSS', 'Responsive Design']
-            },
-            'education': {
-                title: 'Grade 12 Education & Self-Directed Learning',
-                company: 'C.A.B.E. Secondary',
-                dateStart: '2010',
-                dateEnd: 'Ongoing',
-                location: 'Coquitlam, BC',
-                context: 'Formal secondary education completed 2010. Continuous self-directed technical education through hands-on experimentation, documentation review, and collaborative learning with focus on systems administration, infrastructure, and security.',
-                accomplishments: [
-                    'Completed formal secondary education (Grade 12)',
-                    'Continuous self-directed learning in technical domains',
-                    'Deep focus on systems administration and infrastructure',
-                    'Hands-on experimentation and practical skill development',
-                    'Passionate about emerging technologies and continuous improvement',
-                    'Proven ability to master complex technical concepts independently'
-                ],
-                skills: ['Education', 'Learning', 'Self-Directed', 'Systems', 'Infrastructure']
-            },
-            'certifications': {
-                title: 'Professional Certifications & Training',
-                company: 'Professional Development',
-                dateStart: '',
-                dateEnd: '',
-                location: '',
-                context: 'Current professional certifications reflecting commitment to operational excellence, safety, and continuous professional development. All certifications maintained in current compliance status.',
-                accomplishments: [
-                    'Forklift Operator Certification',
-                    'Reach Truck Operator Certification',
-                    'Order Picker Operator Certification',
-                    'Workplace Safety Training',
-                    'Equipment operation with safety-first mindset',
-                    'Commitment to regulatory compliance and best practices'
-                ],
-                skills: ['Certified', 'Equipment', 'Safety', 'Compliance', 'Operations']
-            }
-        };
-
-        function openModal(key) {
-            const data = modalData[key];
-            if (!data) return;
-
-            document.getElementById('modal-title').textContent = data.title;
-            document.getElementById('modal-company').textContent = data.company;
-
-            // Build meta information
-            const metaHtml = [];
-            if (data.dateStart || data.dateEnd) {
-                metaHtml.push(`<div class="modal-meta-item"><i class="fas fa-calendar"></i> ${data.dateStart} - ${data.dateEnd}</div>`);
-            }
-            if (data.location) {
-                metaHtml.push(`<div class="modal-meta-item"><i class="fas fa-map-marker-alt"></i> ${data.location}</div>`);
-            }
-            document.getElementById('modal-meta').innerHTML = metaHtml.join('');
-
-            // Context section
-            if (data.context) {
-                document.getElementById('modal-context').textContent = data.context;
-                document.getElementById('modal-context-section').style.display = 'block';
-            } else {
-                document.getElementById('modal-context-section').style.display = 'none';
-            }
-
-            // Accomplishments section
-            if (data.accomplishments && data.accomplishments.length) {
-                const accomplishmentsList = document.getElementById('modal-accomplishments');
-                accomplishmentsList.innerHTML = data.accomplishments.map(a => `<li>${a}</li>`).join('');
-                document.getElementById('modal-accomplishments-section').style.display = 'block';
-            } else {
-                document.getElementById('modal-accomplishments-section').style.display = 'none';
-            }
-
-            // Skills section
-            if (data.skills && data.skills.length) {
-                const skillsContainer = document.getElementById('modal-skills');
-                skillsContainer.innerHTML = data.skills.map(s => `<div class="modal-tag">${s}</div>`).join('');
-                document.getElementById('modal-skills-section').style.display = 'block';
-            } else {
-                document.getElementById('modal-skills-section').style.display = 'none';
-            }
-
-            document.getElementById('modal-overlay').classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('modal-overlay').classList.remove('active');
-        }
 
         function openProfileModal() {
             document.getElementById('profile-modal-overlay').classList.add('active');
@@ -1812,18 +1503,6 @@
         document.getElementById('profile-modal-overlay').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeProfileModal();
-            }
-        });
-
-        document.getElementById('modal-overlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
             }
         });
 
