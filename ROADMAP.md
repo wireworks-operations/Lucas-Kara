@@ -9,7 +9,7 @@
 
 ## Project Philosophy
 
-This portfolio is a **semantic search interface** that surfaces you — your abilities, projects, career, and qualifications — exactly as if Google indexed *you* as discoverable content. The goal is to maintain that **pristine, intentional HTML structure** while transitioning the JavaScript from inline scripts to a clean, maintainable ES6 module architecture.
+This portfolio is a **semantic search interface** that surfaces me — my abilities, projects, career, and qualifications — exactly as if Google indexed *me* as discoverable content. The goal is to maintain that **pristine, intentional HTML structure** while transitioning the JavaScript from inline scripts to a clean, maintainable ES6 module architecture.
 
 **Core Design Principle:** Creative HTML flexibility + ES6 modularity = No framework overhead, maximum developer velocity, and browser-friendly inspection.
 
